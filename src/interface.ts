@@ -1,8 +1,8 @@
-import { ActionEnum } from "./enum";
+import { ActionType } from "./const";
 
 export interface INode {
   id: string;
-  action: ActionEnum;
+  action: ActionType;
   options: {};
   successNode: string;
   failNode: string;

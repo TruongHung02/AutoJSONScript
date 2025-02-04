@@ -1,5 +1,4 @@
 import { Browser, Page } from "puppeteer";
-import { ActionEnum } from "../enum";
 import { INewTabNode, INode } from "../interface";
 import newTab from "./new-tab";
 import activateTab from "./activate-tab";
@@ -8,14 +7,15 @@ import openUrl from "./open-url";
 import reloadPage from "./reload-page";
 import goBack from "./go-back";
 import { logger } from "../helper/logger";
+import { ACTION } from "../const";
 
 const actionHandlers = {
-  [ActionEnum.NEWTAB]: newTab,
-  [ActionEnum.ACTIVATE_TAB]: activateTab,
-  [ActionEnum.CLOSE_TAB]: closeTab,
-  [ActionEnum.OPEN_URL]: openUrl,
-  [ActionEnum.RELOAD_PAGE]: reloadPage,
-  [ActionEnum.GO_BACK]: goBack,
+  [ACTION.NEWTAB]: newTab,
+  [ACTION.ACTIVATE_TAB]: activateTab,
+  [ACTION.CLOSE_TAB]: closeTab,
+  [ACTION.OPEN_URL]: openUrl,
+  [ACTION.RELOAD_PAGE]: reloadPage,
+  [ACTION.GO_BACK]: goBack,
 } as const;
 
 export default async function nextNode(

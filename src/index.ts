@@ -1,12 +1,12 @@
 import path from "path";
 import puppeteer, { Page } from "puppeteer";
 import { config } from "./config";
-import createBrowser from "./helper/createBrowser";
+import createBrowser from "./helper/create-browser";
 import { delay } from "./until";
-import authProxyPage from "./helper/authProxyPage";
-import newTab from "./components/newTab";
-import formatNodes from "./helper/formatNodes";
-import nextNode from "./components/nextNode";
+import authProxyPage from "./helper/auth-proxy-page";
+import newTab from "./components/new-tab";
+import formatNodes from "./helper/format-nodes";
+import nextNode from "./components/next-node";
 
 // (async () => {
 //   //   const extensionPath = path.resolve(__dirname, "my-extension-folder");
@@ -27,7 +27,7 @@ import nextNode from "./components/nextNode";
 
   await nextNode(nodes[0].successNode, nodes, browser, pages, activePage);
 
-  await delay(20000);
+  // await delay(20000);
   await browser.close();
   console.log(nodes);
 

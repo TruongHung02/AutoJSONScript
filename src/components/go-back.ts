@@ -1,9 +1,8 @@
 import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "./nextNode";
-import authProxyPage from "../helper/authProxyPage";
-import { IActivateTabNode, INewTabNode, INode } from "../interface";
+import nextNode, { findNode } from "./next-node";
+import { INode, IOpenUrlNode, IReloadPageNode } from "../interface";
 
-export default async function activateTab(
+export default async function goBack(
   nodeID: string | null,
   nodes: INode[],
   browser: Browser,
@@ -11,9 +10,10 @@ export default async function activateTab(
   activePage: number,
   proxy?: string
 ) {
-  const node = findNode(nodeID, nodes) as IActivateTabNode;
+  const node = findNode(nodeID, nodes) as IReloadPageNode;
   try {
-    await pages[node.options.tabNumber].bringToFront();
+    await pages[activePage].goBack();
+
     if (node?.successNode) {
       proxy
         ? await nextNode(node?.successNode, nodes, browser, pages, activePage)

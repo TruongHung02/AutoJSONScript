@@ -24,7 +24,7 @@ export default async function createBrowser(
 
   const browser = await puppeteer.launch({
     executablePath: config.EXECUTABLE_PATH, // Adjust this path based on your system
-    headless: false,
+    headless: config.headless,
     args: argsLaunchOption,
   });
 

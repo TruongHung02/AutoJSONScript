@@ -19,3 +19,16 @@ export interface IActivateTabNode extends INode {
     tabNumber: number;
   };
 }
+
+export interface IOpenUrlNode extends INewTabNode {}
+
+export interface ICloseTabNode extends INode {
+  options: {
+    closeType: "current" | "custom";
+    tabNumber: number;
+  };
+}
+
+export interface IReloadPageNode extends INode {}
+
+export interface IGoBackNode extends INode {}

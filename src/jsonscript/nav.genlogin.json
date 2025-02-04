@@ -1,0 +1,244 @@
+{
+  "id": "N8x_SfGHbbCge5FMB3HfJ",
+  "userId": 196986,
+  "name": "nav",
+  "description": "",
+  "version": "1.0.0",
+  "script": {
+    "id": "N8x_SfGHbbCge5FMB3HfJ",
+    "name": "nav",
+    "description": "",
+    "version": "1.0.0",
+    "flow": {
+      "nodes": [
+        {
+          "type": "input",
+          "data": {
+            "action": "Start",
+            "options": {},
+            "successNode": null,
+            "failNode": null
+          },
+          "events": {},
+          "id": "start_m3nAo",
+          "label": "Start",
+          "position": { "x": 50, "y": 100 },
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "style": {
+            "width": "80px",
+            "height": "80px",
+            "backgroundColor": "#36ad6a",
+            "color": "#fff",
+            "box-shadow": "rgb(59 178 85 / 38%) 0px 0px 12px",
+            "--vf-node-color": "#36ad6a",
+            "--vf-handle": "#62fcaf",
+            "border-radius": "50%"
+          },
+          "deletable": false,
+          "class": ""
+        },
+        {
+          "type": "custom-context-menu",
+          "data": {
+            "action": "ContextMenu",
+            "icon": "menu",
+            "options": { "casePaths": {} }
+          },
+          "events": {},
+          "id": "menu",
+          "label": "Context Menu",
+          "position": { "x": 40, "y": 300 },
+          "style": {
+            "padding": "10px 20px",
+            "backgroundColor": "#55b3e6",
+            "color": "#fff",
+            "box-shadow": "#83c3e6 0px 0px 12px",
+            "--vf-node-color": "#55b3e6",
+            "--vf-handle": "#62fcaf",
+            "border-width": "1px",
+            "border-style": "solid",
+            "border-color": "#55b3e6",
+            "border-radius": "3px"
+          },
+          "deletable": false,
+          "class": ""
+        },
+        {
+          "type": "helper",
+          "data": {
+            "action": "Variables",
+            "icon": "actionVariables",
+            "options": {}
+          },
+          "events": {},
+          "id": "variables",
+          "label": "Variables",
+          "position": { "x": 50, "y": 200 },
+          "style": {
+            "padding": "10px 20px",
+            "backgroundColor": "#f0a020",
+            "color": "#fff",
+            "box-shadow": "#f0a720 0px 0px 12px",
+            "--vf-node-color": "#f0a020",
+            "--vf-handle": "#62fcaf",
+            "border-width": "1px",
+            "border-style": "solid",
+            "border-color": "#f0a020",
+            "border-radius": "3px"
+          },
+          "deletable": false,
+          "class": ""
+        },
+        {
+          "type": "custom",
+          "data": {
+            "icon": "actionOpenUrl",
+            "action": "OpenUrl",
+            "options": {
+              "disabled": false,
+              "nodeSleep": "0",
+              "nodeTimeout": "30",
+              "timeoutNextNode": "successNode",
+              "breakpoint": false,
+              "url": "https://google.com",
+              "timeoutWaitForNavigation": "0",
+              "waitUntilEvent": "networkidle2"
+            },
+            "successNode": null,
+            "failNode": null
+          },
+          "events": {},
+          "id": "tjU8X",
+          "position": { "x": 237.25686534663893, "y": 191.48898626325956 },
+          "label": "Open url",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "class": ""
+        },
+        {
+          "type": "custom",
+          "data": {
+            "icon": "actionCloseTab",
+            "action": "CloseTab",
+            "options": {
+              "disabled": false,
+              "nodeSleep": "0",
+              "nodeTimeout": "30",
+              "timeoutNextNode": "successNode",
+              "breakpoint": false,
+              "closeType": "current",
+              "tabNumber": 1,
+              "description": "current tab"
+            },
+            "successNode": null,
+            "failNode": null
+          },
+          "events": {},
+          "id": "tNDmT",
+          "position": { "x": 310.67305836131436, "y": 60.86537012026551 },
+          "label": "Close tab",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "class": ""
+        },
+        {
+          "type": "custom",
+          "data": {
+            "icon": "actionGoBack",
+            "action": "GoBack",
+            "options": {
+              "disabled": false,
+              "nodeSleep": "0",
+              "nodeTimeout": "30",
+              "timeoutNextNode": "successNode",
+              "breakpoint": false
+            },
+            "successNode": null,
+            "failNode": null
+          },
+          "events": {},
+          "id": "DqS42",
+          "position": { "x": 140.0849535103241, "y": 12.878818100554156 },
+          "label": "Go back",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "class": ""
+        },
+        {
+          "type": "custom",
+          "data": {
+            "icon": "actionReloadPage",
+            "action": "Reload",
+            "options": {
+              "disabled": false,
+              "nodeSleep": "0",
+              "nodeTimeout": "30",
+              "timeoutNextNode": "successNode",
+              "breakpoint": false
+            },
+            "successNode": null,
+            "failNode": null
+          },
+          "events": {},
+          "id": "OYGRx",
+          "position": { "x": 385.0427084281286, "y": 200.07009973250734 },
+          "label": "Reload page",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "class": ""
+        },
+        {
+          "type": "custom",
+          "data": {
+            "icon": "actionCloseTab",
+            "action": "CloseTab",
+            "options": {
+              "disabled": false,
+              "nodeSleep": "0",
+              "nodeTimeout": "30",
+              "timeoutNextNode": "successNode",
+              "breakpoint": false,
+              "closeType": "custom",
+              "tabNumber": 2
+            },
+            "successNode": null,
+            "failNode": null
+          },
+          "id": "rmbRd",
+          "position": { "x": 464.17896740431325, "y": 66.00411363156132 },
+          "label": "Close tab",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "class": ""
+        }
+      ],
+      "edges": [],
+      "position": [339.67472281698076, 175.1971204579071],
+      "zoom": 0.7,
+      "viewport": {
+        "x": 339.67472281698076,
+        "y": 175.1971204579071,
+        "zoom": 0.7
+      }
+    },
+    "variables": []
+  },
+  "table": [],
+  "input": [],
+  "metadata": {
+    "protected": false,
+    "productId": null,
+    "versionId": null,
+    "sellerId": null,
+    "hash": "",
+    "key": ""
+  },
+  "type": "LOCAL",
+  "contextMenu": [],
+  "enableContextMenu": false,
+  "enableInput": true,
+  "createdAt": "2025-02-04T11:11:52.884Z",
+  "updatedAt": "2025-02-04T11:16:01.462Z",
+  "expiredAt": null
+}

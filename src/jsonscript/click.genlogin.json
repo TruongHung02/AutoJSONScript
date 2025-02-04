@@ -1,0 +1,180 @@
+{
+  "id": "oXPuULIL4QtJ9-7cKnXtu",
+  "userId": 196986,
+  "name": "click",
+  "description": "",
+  "version": "1.0.0",
+  "script": {
+    "id": "oXPuULIL4QtJ9-7cKnXtu",
+    "name": "click",
+    "description": "",
+    "version": "1.0.0",
+    "flow": {
+      "nodes": [
+        {
+          "type": "input",
+          "data": {
+            "action": "Start",
+            "options": {},
+            "successNode": null,
+            "failNode": null
+          },
+          "events": {},
+          "id": "start_D4bVV",
+          "label": "Start",
+          "position": { "x": 50, "y": 100 },
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "style": {
+            "width": "80px",
+            "height": "80px",
+            "backgroundColor": "#36ad6a",
+            "color": "#fff",
+            "box-shadow": "rgb(59 178 85 / 38%) 0px 0px 12px",
+            "--vf-node-color": "#36ad6a",
+            "--vf-handle": "#62fcaf",
+            "border-radius": "50%"
+          },
+          "deletable": false,
+          "class": ""
+        },
+        {
+          "type": "custom-context-menu",
+          "data": {
+            "action": "ContextMenu",
+            "icon": "menu",
+            "options": { "casePaths": {} }
+          },
+          "events": {},
+          "id": "menu",
+          "label": "Context Menu",
+          "position": { "x": 40, "y": 300 },
+          "style": {
+            "padding": "10px 20px",
+            "backgroundColor": "#55b3e6",
+            "color": "#fff",
+            "box-shadow": "#83c3e6 0px 0px 12px",
+            "--vf-node-color": "#55b3e6",
+            "--vf-handle": "#62fcaf",
+            "border-width": "1px",
+            "border-style": "solid",
+            "border-color": "#55b3e6",
+            "border-radius": "3px"
+          },
+          "deletable": false,
+          "class": ""
+        },
+        {
+          "type": "helper",
+          "data": {
+            "action": "Variables",
+            "icon": "actionVariables",
+            "options": {}
+          },
+          "events": {},
+          "id": "variables",
+          "label": "Variables",
+          "position": { "x": 50, "y": 200 },
+          "style": {
+            "padding": "10px 20px",
+            "backgroundColor": "#f0a020",
+            "color": "#fff",
+            "box-shadow": "#f0a720 0px 0px 12px",
+            "--vf-node-color": "#f0a020",
+            "--vf-handle": "#62fcaf",
+            "border-width": "1px",
+            "border-style": "solid",
+            "border-color": "#f0a020",
+            "border-radius": "3px"
+          },
+          "deletable": false,
+          "class": ""
+        },
+        {
+          "type": "custom",
+          "data": {
+            "icon": "actionClick",
+            "action": "Click",
+            "options": {
+              "disabled": false,
+              "nodeSleep": "0",
+              "nodeTimeout": "30",
+              "timeoutNextNode": "successNode",
+              "breakpoint": false,
+              "buttonType": "left",
+              "selectorBy": "selector",
+              "selectorType": "xpath",
+              "selector": "xpath-selector",
+              "x": "0",
+              "y": "0",
+              "timeout": "10",
+              "clickCount": 1,
+              "description": "click selector"
+            },
+            "successNode": null,
+            "failNode": null
+          },
+          "id": "GKKo0",
+          "position": { "x": -310.35714285714283, "y": 135.57142857142856 },
+          "label": "Click",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "class": ""
+        },
+        {
+          "type": "custom",
+          "data": {
+            "icon": "actionClick",
+            "action": "Click",
+            "options": {
+              "disabled": false,
+              "nodeSleep": "0",
+              "nodeTimeout": "30",
+              "timeoutNextNode": "successNode",
+              "breakpoint": false,
+              "buttonType": "left",
+              "selectorBy": "coordinates",
+              "selectorType": null,
+              "selector": "",
+              "x": "0123",
+              "y": "0123123",
+              "timeout": "10",
+              "clickCount": 1,
+              "description": "click coordinate"
+            },
+            "successNode": null,
+            "failNode": null
+          },
+          "id": "ICLD8",
+          "position": { "x": -307.50000000000006, "y": 215.5714285714286 },
+          "label": "Click",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "class": ""
+        }
+      ],
+      "edges": [],
+      "position": [448.85, 126.5],
+      "zoom": 0.7,
+      "viewport": { "x": 448.85, "y": 126.5, "zoom": 0.7 }
+    },
+    "variables": []
+  },
+  "table": [],
+  "input": [],
+  "metadata": {
+    "protected": false,
+    "productId": null,
+    "versionId": null,
+    "sellerId": null,
+    "hash": "",
+    "key": ""
+  },
+  "type": "LOCAL",
+  "contextMenu": [],
+  "enableContextMenu": false,
+  "enableInput": true,
+  "createdAt": "2025-02-04T17:33:31.094Z",
+  "updatedAt": "2025-02-04T17:33:31.094Z",
+  "expiredAt": null
+}

@@ -1,80 +1,51 @@
 [
   {
-    "id": "start_m3nAo",
+    "id": "start_D4bVV",
     "action": "Start",
     "options": {},
     "successNode": null,
     "failNode": null
   },
   {
-    "id": "tjU8X",
-    "action": "OpenUrl",
+    "id": "GKKo0",
+    "action": "Click",
     "options": {
       "disabled": false,
       "nodeSleep": "0",
       "nodeTimeout": "30",
       "timeoutNextNode": "successNode",
       "breakpoint": false,
-      "url": "https://google.com",
-      "timeoutWaitForNavigation": "0",
-      "waitUntilEvent": "networkidle2"
+      "buttonType": "left",
+      "selectorBy": "selector",
+      "selectorType": "xpath",
+      "selector": "xpath-selector",
+      "x": "0",
+      "y": "0",
+      "timeout": "10",
+      "clickCount": 1,
+      "description": "click selector"
     },
     "successNode": null,
     "failNode": null
   },
   {
-    "id": "tNDmT",
-    "action": "CloseTab",
+    "id": "ICLD8",
+    "action": "Click",
     "options": {
       "disabled": false,
       "nodeSleep": "0",
       "nodeTimeout": "30",
       "timeoutNextNode": "successNode",
       "breakpoint": false,
-      "closeType": "current",
-      "tabNumber": 1,
-      "description": "current tab"
-    },
-    "successNode": null,
-    "failNode": null
-  },
-  {
-    "id": "DqS42",
-    "action": "GoBack",
-    "options": {
-      "disabled": false,
-      "nodeSleep": "0",
-      "nodeTimeout": "30",
-      "timeoutNextNode": "successNode",
-      "breakpoint": false
-    },
-    "successNode": null,
-    "failNode": null
-  },
-  {
-    "id": "OYGRx",
-    "action": "Reload",
-    "options": {
-      "disabled": false,
-      "nodeSleep": "0",
-      "nodeTimeout": "30",
-      "timeoutNextNode": "successNode",
-      "breakpoint": false
-    },
-    "successNode": null,
-    "failNode": null
-  },
-  {
-    "id": "rmbRd",
-    "action": "CloseTab",
-    "options": {
-      "disabled": false,
-      "nodeSleep": "0",
-      "nodeTimeout": "30",
-      "timeoutNextNode": "successNode",
-      "breakpoint": false,
-      "closeType": "custom",
-      "tabNumber": 2
+      "buttonType": "left",
+      "selectorBy": "coordinates",
+      "selectorType": null,
+      "selector": "",
+      "x": "0123",
+      "y": "0123123",
+      "timeout": "10",
+      "clickCount": 1,
+      "description": "click coordinate"
     },
     "successNode": null,
     "failNode": null

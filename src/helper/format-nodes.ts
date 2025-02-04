@@ -2,6 +2,7 @@ import * as fs from "fs";
 import { config } from "../config";
 import path from "path";
 import { INode } from "../interface";
+import { logger } from "./logger";
 
 export default async function formatNodes(): Promise<INode[]> {
   try {
@@ -32,7 +33,7 @@ export default async function formatNodes(): Promise<INode[]> {
     );
     return formattedNodes;
   } catch (error) {
-    console.error("Error reading file:", error);
+    logger.error("Error reading file");
     return [];
   }
 }

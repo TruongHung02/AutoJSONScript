@@ -21,9 +21,13 @@ export default async function click(
         const clickElement = await pages[activePage].waitForSelector(
           `::-p-xpath(${node.options.selector})`
         );
-        await clickElement?.click();
+        for (let i = 0; i < node.options.clickCount; i++) {
+          await clickElement?.click();
+        }
       }
     } else if (node.options.selectorBy === "coordinates") {
+      logger.error("Please select element by xpath");
+      throw new Error("Click failed");
     }
     if (node?.successNode) {
       proxy

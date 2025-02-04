@@ -4,7 +4,7 @@
     "action": "Start",
     "options": {},
     "successNode": null,
-    "failNode": null
+    "failNode": null        
   },
   {
     "id": "GKKo0",
@@ -34,7 +34,7 @@
     "options": {
       "disabled": false,
       "nodeSleep": "0",
-      "nodeTimeout": "30",
+      "nodeTimeout": "30",        
       "timeoutNextNode": "successNode",
       "breakpoint": false,
       "buttonType": "left",

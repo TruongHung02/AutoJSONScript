@@ -1,18 +1,31 @@
 import path from "path";
 import puppeteer, { Browser } from "puppeteer";
-import { EXECUTABLE_PATH, USER_AGENT } from "../config";
+import { config } from "../config";
 
 export default async function createBrowser(
   proxyString?: string
 ): Promise<Browser> {
+  const argsLaunchOption = [
+    `--user-agent=${config.USER_AGENT}`,
+    "--enable-cookies",
+    "--enable-javascript",
+    "--window-size=1920,1080",
+    "accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "--no-sandbox",
+    "--disable-dev-shm-usage",
+  ];
+
+  if (proxyString) {
+    const [proxyUsername, proxyPassword, IpAddress, port] =
+      proxyString.split(/[@:]/);
+
+    argsLaunchOption.push(`--proxy-server=${IpAddress}:${port}`);
+  }
+
   const browser = await puppeteer.launch({
-    executablePath: EXECUTABLE_PATH, // Adjust this path based on your system
+    executablePath: config.EXECUTABLE_PATH, // Adjust this path based on your system
     headless: false,
-    args: [
-      //   `--disable-extensions-except=${extensionPath}`,
-      //   `--load-extension=${extensionPath}`,
-      `--user-agent=${USER_AGENT}`,
-    ],
+    args: argsLaunchOption,
   });
 
   return browser;

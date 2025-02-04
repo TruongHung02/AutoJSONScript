@@ -1,8 +1,13 @@
 import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "./next-node";
-import { INode, IOpenUrlNode, IReloadPageNode } from "../interface";
+import nextNode, { findNode } from "../next-node";
+import {
+  IActivateTabNode,
+  ICloseTabNode,
+  INewTabNode,
+  INode,
+} from "../../interface";
 
-export default async function reloadPage(
+export default async function closeTab(
   nodeID: string | null,
   nodes: INode[],
   browser: Browser,
@@ -10,9 +15,13 @@ export default async function reloadPage(
   activePage: number,
   proxy?: string
 ) {
-  const node = findNode(nodeID, nodes) as IReloadPageNode;
+  const node = findNode(nodeID, nodes) as ICloseTabNode;
   try {
-    await pages[activePage].reload();
+    if (node.options.closeType === "current") {
+      await pages[activePage].close();
+    } else {
+      await pages[node.options.tabNumber].close();
+    }
 
     if (node?.successNode) {
       proxy

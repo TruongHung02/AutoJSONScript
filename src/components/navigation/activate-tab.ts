@@ -1,7 +1,7 @@
 import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "./next-node";
-import authProxyPage from "../helper/auth-proxy-page";
-import { IActivateTabNode, INewTabNode, INode } from "../interface";
+import nextNode, { findNode } from "../next-node";
+import authProxyPage from "../../helper/auth-proxy-page";
+import { IActivateTabNode, INewTabNode, INode } from "../../interface";
 
 export default async function activateTab(
   nodeID: string | null,

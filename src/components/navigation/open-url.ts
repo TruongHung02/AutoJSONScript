@@ -1,13 +1,8 @@
 import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "./next-node";
-import {
-  IActivateTabNode,
-  ICloseTabNode,
-  INewTabNode,
-  INode,
-} from "../interface";
+import nextNode, { findNode } from "../next-node";
+import { INode, IOpenUrlNode } from "../../interface";
 
-export default async function closeTab(
+export default async function openUrl(
   nodeID: string | null,
   nodes: INode[],
   browser: Browser,
@@ -15,13 +10,9 @@ export default async function closeTab(
   activePage: number,
   proxy?: string
 ) {
-  const node = findNode(nodeID, nodes) as ICloseTabNode;
+  const node = findNode(nodeID, nodes) as IOpenUrlNode;
   try {
-    if (node.options.closeType === "current") {
-      await pages[activePage].close();
-    } else {
-      await pages[node.options.tabNumber].close();
-    }
+    await pages[activePage].goto(node.options.url);
 
     if (node?.successNode) {
       proxy

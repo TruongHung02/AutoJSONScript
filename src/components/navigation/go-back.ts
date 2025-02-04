@@ -1,9 +1,8 @@
 import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "./next-node";
-import authProxyPage from "../helper/auth-proxy-page";
-import { INewTabNode, INode } from "../interface";
+import nextNode, { findNode } from "../next-node";
+import { INode, IOpenUrlNode, IReloadPageNode } from "../../interface";
 
-export default async function newTab(
+export default async function goBack(
   nodeID: string | null,
   nodes: INode[],
   browser: Browser,
@@ -11,16 +10,9 @@ export default async function newTab(
   activePage: number,
   proxy?: string
 ) {
-  const node = findNode(nodeID, nodes) as INewTabNode;
+  const node = findNode(nodeID, nodes) as IReloadPageNode;
   try {
-    const newpage = !proxy
-      ? await browser.newPage()
-      : await authProxyPage(await browser.newPage(), "user", "password");
-    await newpage.goto(node?.options.url);
-    await newpage.waitForNetworkIdle();
-
-    pages.push(newpage);
-    activePage = pages.length - 1;
+    await pages[activePage].goBack();
 
     if (node?.successNode) {
       proxy

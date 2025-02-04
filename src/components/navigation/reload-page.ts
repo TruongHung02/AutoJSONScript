@@ -1,8 +1,8 @@
 import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "./next-node";
-import { INode, IOpenUrlNode } from "../interface";
+import nextNode, { findNode } from "../next-node";
+import { INode, IOpenUrlNode, IReloadPageNode } from "../../interface";
 
-export default async function openUrl(
+export default async function reloadPage(
   nodeID: string | null,
   nodes: INode[],
   browser: Browser,
@@ -10,9 +10,9 @@ export default async function openUrl(
   activePage: number,
   proxy?: string
 ) {
-  const node = findNode(nodeID, nodes) as IOpenUrlNode;
+  const node = findNode(nodeID, nodes) as IReloadPageNode;
   try {
-    await pages[activePage].goto(node.options.url);
+    await pages[activePage].reload();
 
     if (node?.successNode) {
       proxy

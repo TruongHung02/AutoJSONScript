@@ -1,11 +1,11 @@
 import { Browser, Page } from "puppeteer";
 import { INewTabNode, INode } from "../interface";
-import newTab from "./new-tab";
-import activateTab from "./activate-tab";
-import closeTab from "./close-tab";
-import openUrl from "./open-url";
-import reloadPage from "./reload-page";
-import goBack from "./go-back";
+import newTab from "./navigation/new-tab";
+import activateTab from "./navigation/activate-tab";
+import closeTab from "./navigation/close-tab";
+import openUrl from "./navigation/open-url";
+import reloadPage from "./navigation/reload-page";
+import goBack from "./navigation/go-back";
 import { logger } from "../helper/logger";
 import { ACTION } from "../const";
 

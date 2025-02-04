@@ -4,7 +4,7 @@ import { config } from "./config";
 import createBrowser from "./helper/create-browser";
 import { delay } from "./until";
 import authProxyPage from "./helper/auth-proxy-page";
-import newTab from "./components/new-tab";
+import newTab from "./components/navigation/new-tab";
 import formatNodes from "./helper/format-nodes";
 import nextNode from "./components/next-node";
 

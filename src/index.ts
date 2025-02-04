@@ -27,9 +27,8 @@ import nextNode from "./components/next-node";
 
   await nextNode(nodes[0].successNode, nodes, browser, pages, activePage);
 
-  // await delay(20000);
+  await delay(2000);
   await browser.close();
-  console.log(nodes);
 
   // // Đóng trình duyệt sau 5 giây
   // setTimeout(async () => {

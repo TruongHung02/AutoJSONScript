@@ -1,0 +1,55 @@
+import { Browser, Page } from "puppeteer";
+import nextNode, { findNode } from "../next-node";
+import { IActivateTabNode, IClickNode, INode } from "../../interface";
+import { logger } from "../../helper/logger";
+
+export default async function click(
+  nodeID: string | null,
+  nodes: INode[],
+  browser: Browser,
+  pages: Page[],
+  activePage: number,
+  proxy?: string
+) {
+  const node = findNode(nodeID, nodes) as IClickNode;
+  try {
+    if (node.options.selectorBy === "selector") {
+      if (node.options.selectorType !== "xpath") {
+        logger.error("Please select element by xpath");
+        throw new Error("Click failed");
+      } else {
+        const clickElement = await pages[activePage].waitForSelector(
+          `::-p-xpath(${node.options.selector})`
+        );
+        await clickElement?.click();
+      }
+    } else if (node.options.selectorBy === "coordinates") {
+    }
+    if (node?.successNode) {
+      proxy
+        ? await nextNode(node?.successNode, nodes, browser, pages, activePage)
+        : await nextNode(
+            node?.successNode,
+            nodes,
+            browser,
+            pages,
+            activePage,
+            proxy
+          );
+    }
+  } catch (error) {
+    logger.error(error as string);
+    if (node?.failNode) {
+      proxy
+        ? await nextNode(node?.failNode, nodes, browser, pages, activePage)
+        : await nextNode(
+            node?.failNode,
+            nodes,
+            browser,
+            pages,
+            activePage,
+            proxy
+          );
+    }
+  }
+}

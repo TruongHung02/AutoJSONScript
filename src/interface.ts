@@ -32,3 +32,15 @@ export interface ICloseTabNode extends INode {
 export interface IReloadPageNode extends INode {}
 
 export interface IGoBackNode extends INode {}
+
+export interface IClickNode extends INode {
+  options: {
+    buttonType: "left" | "right" | "center";
+    selectorBy: "selector" | "coordinates";
+    selectorType: "xpath" | "css" | "text" | null;
+    selector: string;
+    x: number;
+    y: number;
+    clickCount: number;
+  };
+}

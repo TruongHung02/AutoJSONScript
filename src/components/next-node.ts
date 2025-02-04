@@ -8,6 +8,7 @@ import reloadPage from "./navigation/reload-page";
 import goBack from "./navigation/go-back";
 import { logger } from "../helper/logger";
 import { ACTION } from "../const";
+import click from "./mouse/click";
 
 const actionHandlers = {
   [ACTION.NEWTAB]: newTab,
@@ -16,6 +17,7 @@ const actionHandlers = {
   [ACTION.OPEN_URL]: openUrl,
   [ACTION.RELOAD_PAGE]: reloadPage,
   [ACTION.GO_BACK]: goBack,
+  [ACTION.CLICK]: click,
 } as const;
 
 export default async function nextNode(

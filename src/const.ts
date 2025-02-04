@@ -5,7 +5,7 @@ export const ACTION = {
   CLOSE_TAB: "CloseTab",
   GO_BACK: "GoBack",
   RELOAD_PAGE: "ReloadPage",
-  // CLICK: "Click",
+  CLICK: "Click",
   // PRESS_KEY: "PressKey",
   // TYPE_TEXT: "TypeText",
   // ELEMENT_EXISTS: "ElementExists",

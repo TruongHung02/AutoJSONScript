@@ -1,51 +1,90 @@
 [
   {
-    "id": "start_D4bVV",
+    "id": "start_m3nAo",
     "action": "Start",
     "options": {},
-    "successNode": null,
-    "failNode": null        
+    "successNode": "48JNj",
+    "failNode": null
   },
   {
-    "id": "GKKo0",
-    "action": "Click",
+    "id": "GYFhs",
+    "action": "ActivateTab",
     "options": {
       "disabled": false,
       "nodeSleep": "0",
       "nodeTimeout": "30",
       "timeoutNextNode": "successNode",
       "breakpoint": false,
-      "buttonType": "left",
-      "selectorBy": "selector",
-      "selectorType": "xpath",
-      "selector": "xpath-selector",
-      "x": "0",
-      "y": "0",
-      "timeout": "10",
-      "clickCount": 1,
-      "description": "click selector"
+      "tabNumber": "1",
+      "selectType": "index",
+      "patternUrl": ""
     },
     "successNode": null,
     "failNode": null
   },
   {
-    "id": "ICLD8",
-    "action": "Click",
+    "id": "BMTB1",
+    "action": "NewTab",
     "options": {
       "disabled": false,
       "nodeSleep": "0",
-      "nodeTimeout": "30",        
+      "nodeTimeout": "30",
       "timeoutNextNode": "successNode",
       "breakpoint": false,
-      "buttonType": "left",
-      "selectorBy": "coordinates",
-      "selectorType": null,
-      "selector": "",
-      "x": "0123",
-      "y": "0123123",
-      "timeout": "10",
-      "clickCount": 1,
-      "description": "click coordinate"
+      "url": "https://facebook.com",
+      "timeoutWaitForNavigation": "0",
+      "waitUntilEvent": "networkidle2",
+      "description": "fb"
+    },
+    "successNode": "GYFhs",
+    "failNode": null
+  },
+  {
+    "id": "rEo-0",
+    "action": "NewTab",
+    "options": {
+      "disabled": false,
+      "nodeSleep": "0",
+      "nodeTimeout": "30",
+      "timeoutNextNode": "successNode",
+      "breakpoint": false,
+      "url": "https://youtube.com",
+      "timeoutWaitForNavigation": "0",
+      "waitUntilEvent": "networkidle2",
+      "description": "youtube\n"
+    },
+    "successNode": "BMTB1",
+    "failNode": "ZZqX9"
+  },
+  {
+    "id": "48JNj",
+    "action": "NewTab",
+    "options": {
+      "disabled": false,
+      "nodeSleep": "0",
+      "nodeTimeout": "30",
+      "timeoutNextNode": "successNode",
+      "breakpoint": false,
+      "url": "https://google.com",
+      "timeoutWaitForNavigation": "0",
+      "waitUntilEvent": "networkidle2",
+      "description": "google\n"
+    },
+    "successNode": "rEo-0",
+    "failNode": null
+  },
+  {
+    "id": "ZZqX9",
+    "action": "OpenUrl",
+    "options": {
+      "disabled": false,
+      "nodeSleep": "0",
+      "nodeTimeout": "30",
+      "timeoutNextNode": "successNode",
+      "breakpoint": false,
+      "url": "https://instagram.com",
+      "timeoutWaitForNavigation": "0",
+      "waitUntilEvent": "networkidle2"
     },
     "successNode": null,
     "failNode": null

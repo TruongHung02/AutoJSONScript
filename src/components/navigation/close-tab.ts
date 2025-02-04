@@ -1,11 +1,7 @@
-import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "../next-node";
-import {
-  IActivateTabNode,
-  ICloseTabNode,
-  INewTabNode,
-  INode,
-} from "../../interface";
+import { Browser, Page } from 'puppeteer'
+import nextNode, { findNode } from '../next-node'
+import { ICloseTabNode, INode } from '../../interface'
+import { logger } from '~/helper/logger'
 
 export default async function closeTab(
   nodeID: string | null,
@@ -13,40 +9,23 @@ export default async function closeTab(
   browser: Browser,
   pages: Page[],
   activePage: number,
-  proxy?: string
+  proxy?: string,
 ) {
-  const node = findNode(nodeID, nodes) as ICloseTabNode;
+  const node = findNode(nodeID, nodes) as ICloseTabNode
   try {
-    if (node.options.closeType === "current") {
-      await pages[activePage].close();
+    if (node.options.closeType === 'current') {
+      await pages[activePage].close()
     } else {
-      await pages[node.options.tabNumber].close();
+      await pages[node.options.tabNumber].close()
     }
 
     if (node?.successNode) {
-      proxy
-        ? await nextNode(node?.successNode, nodes, browser, pages, activePage)
-        : await nextNode(
-            node?.successNode,
-            nodes,
-            browser,
-            pages,
-            activePage,
-            proxy
-          );
+      await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   } catch (error) {
     if (node?.failNode) {
-      proxy
-        ? await nextNode(node?.failNode, nodes, browser, pages, activePage)
-        : await nextNode(
-            node?.failNode,
-            nodes,
-            browser,
-            pages,
-            activePage,
-            proxy
-          );
+      logger.error(error as string)
+      await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   }
 }

@@ -1,46 +1,49 @@
-import { ActionType } from "./const";
+import { ActionType } from './const'
 
 export interface INode {
-  id: string;
-  action: ActionType;
-  options: {};
-  successNode: string;
-  failNode: string;
+  id: string
+  action: ActionType
+  options: object
+  successNode: string
+  failNode: string
 }
 
 export interface INewTabNode extends INode {
   options: {
-    url: string;
-  };
+    url: string
+  }
 }
 
 export interface IActivateTabNode extends INode {
   options: {
-    tabNumber: number;
-  };
+    tabNumber: number
+  }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface IOpenUrlNode extends INewTabNode {}
 
 export interface ICloseTabNode extends INode {
   options: {
-    closeType: "current" | "custom";
-    tabNumber: number;
-  };
+    closeType: 'current' | 'custom'
+    tabNumber: number
+  }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface IReloadPageNode extends INode {}
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface IGoBackNode extends INode {}
 
 export interface IClickNode extends INode {
   options: {
-    buttonType: "left" | "right" | "center";
-    selectorBy: "selector" | "coordinates";
-    selectorType: "xpath" | "css" | "text" | null;
-    selector: string;
-    x: number;
-    y: number;
-    clickCount: number;
-  };
+    buttonType: 'left' | 'right' | 'center'
+    selectorBy: 'selector' | 'coordinates'
+    selectorType: 'xpath' | 'css' | 'text' | null
+    selector: string
+    x: number
+    y: number
+    clickCount: number
+  }
 }

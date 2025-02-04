@@ -1,32 +1,28 @@
-import path from "path";
-import puppeteer, { Browser } from "puppeteer";
-import { config } from "../config";
+import puppeteer, { Browser } from 'puppeteer'
+import { config } from '../config'
 
-export default async function createBrowser(
-  proxyString?: string
-): Promise<Browser> {
+export default async function createBrowser(proxyString?: string): Promise<Browser> {
   const argsLaunchOption = [
     `--user-agent=${config.USER_AGENT}`,
-    "--enable-cookies",
-    "--enable-javascript",
-    "--window-size=1920,1080",
-    "accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-    "--no-sandbox",
-    "--disable-dev-shm-usage",
-  ];
+    '--enable-cookies',
+    '--enable-javascript',
+    '--window-size=1920,1080',
+    'accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    '--no-sandbox',
+    '--disable-dev-shm-usage',
+  ]
 
   if (proxyString) {
-    const [proxyUsername, proxyPassword, IpAddress, port] =
-      proxyString.split(/[@:]/);
+    const [proxyUsername, proxyPassword, IpAddress, port] = proxyString.split(/[@:]/)
 
-    argsLaunchOption.push(`--proxy-server=${IpAddress}:${port}`);
+    argsLaunchOption.push(`--proxy-server=${IpAddress}:${port}`)
   }
 
   const browser = await puppeteer.launch({
     executablePath: config.EXECUTABLE_PATH, // Adjust this path based on your system
     headless: config.headless,
     args: argsLaunchOption,
-  });
+  })
 
-  return browser;
+  return browser
 }

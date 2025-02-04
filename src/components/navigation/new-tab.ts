@@ -1,7 +1,8 @@
-import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "../next-node";
-import authProxyPage from "../../helper/auth-proxy-page";
-import { INewTabNode, INode } from "../../interface";
+import { Browser, Page } from 'puppeteer'
+import nextNode, { findNode } from '../next-node'
+import authProxyPage from '../../helper/auth-proxy-page'
+import { INewTabNode, INode } from '../../interface'
+import { logger } from '~/helper/logger'
 
 export default async function newTab(
   nodeID: string | null,
@@ -9,43 +10,24 @@ export default async function newTab(
   browser: Browser,
   pages: Page[],
   activePage: number,
-  proxy?: string
+  proxy?: string,
 ) {
-  const node = findNode(nodeID, nodes) as INewTabNode;
+  const node = findNode(nodeID, nodes) as INewTabNode
   try {
-    const newpage = !proxy
-      ? await browser.newPage()
-      : await authProxyPage(await browser.newPage(), "user", "password");
-    await newpage.goto(node?.options.url);
-    await newpage.waitForNetworkIdle();
+    const newpage = !proxy ? await browser.newPage() : await authProxyPage(await browser.newPage(), 'user', 'password')
+    await newpage.goto(node?.options.url)
+    await newpage.waitForNetworkIdle()
 
-    pages.push(newpage);
-    activePage = pages.length - 1;
+    pages.push(newpage)
+    activePage = pages.length - 1
 
     if (node?.successNode) {
-      proxy
-        ? await nextNode(node?.successNode, nodes, browser, pages, activePage)
-        : await nextNode(
-            node?.successNode,
-            nodes,
-            browser,
-            pages,
-            activePage,
-            proxy
-          );
+      await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   } catch (error) {
     if (node?.failNode) {
-      proxy
-        ? await nextNode(node?.failNode, nodes, browser, pages, activePage)
-        : await nextNode(
-            node?.failNode,
-            nodes,
-            browser,
-            pages,
-            activePage,
-            proxy
-          );
+      logger.error(error as string)
+      await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   }
 }

@@ -1,7 +1,7 @@
-import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "../next-node";
-import authProxyPage from "../../helper/auth-proxy-page";
-import { IActivateTabNode, INewTabNode, INode } from "../../interface";
+import { Browser, Page } from 'puppeteer'
+import nextNode, { findNode } from '../next-node'
+import { IActivateTabNode, INode } from '../../interface'
+import { logger } from '~/helper/logger'
 
 export default async function activateTab(
   nodeID: string | null,
@@ -9,35 +9,18 @@ export default async function activateTab(
   browser: Browser,
   pages: Page[],
   activePage: number,
-  proxy?: string
+  proxy?: string,
 ) {
-  const node = findNode(nodeID, nodes) as IActivateTabNode;
+  const node = findNode(nodeID, nodes) as IActivateTabNode
   try {
-    await pages[node.options.tabNumber].bringToFront();
+    await pages[node.options.tabNumber].bringToFront()
     if (node?.successNode) {
-      proxy
-        ? await nextNode(node?.successNode, nodes, browser, pages, activePage)
-        : await nextNode(
-            node?.successNode,
-            nodes,
-            browser,
-            pages,
-            activePage,
-            proxy
-          );
+      await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   } catch (error) {
     if (node?.failNode) {
-      proxy
-        ? await nextNode(node?.failNode, nodes, browser, pages, activePage)
-        : await nextNode(
-            node?.failNode,
-            nodes,
-            browser,
-            pages,
-            activePage,
-            proxy
-          );
+      logger.error(error as string)
+      await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   }
 }

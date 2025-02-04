@@ -1,11 +1,11 @@
 export const ACTION = {
-  NEWTAB: "NewTab",
-  ACTIVATE_TAB: "ActivateTab",
-  OPEN_URL: "OpenUrl",
-  CLOSE_TAB: "CloseTab",
-  GO_BACK: "GoBack",
-  RELOAD_PAGE: "ReloadPage",
-  CLICK: "Click",
+  NEWTAB: 'NewTab',
+  ACTIVATE_TAB: 'ActivateTab',
+  OPEN_URL: 'OpenUrl',
+  CLOSE_TAB: 'CloseTab',
+  GO_BACK: 'GoBack',
+  RELOAD_PAGE: 'ReloadPage',
+  CLICK: 'Click',
   // PRESS_KEY: "PressKey",
   // TYPE_TEXT: "TypeText",
   // ELEMENT_EXISTS: "ElementExists",
@@ -20,5 +20,5 @@ export const ACTION = {
   // WRITE_FILE: "WriteFile",
   // SET_VARIABLE: "SetVariable",
   // COOKIES: "Cookies",
-} as const;
-export type ActionType = (typeof ACTION)[keyof typeof ACTION];
+} as const
+export type ActionType = (typeof ACTION)[keyof typeof ACTION]

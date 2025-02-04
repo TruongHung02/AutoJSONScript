@@ -1,14 +1,14 @@
-import { Browser, Page } from "puppeteer";
-import { INewTabNode, INode } from "../interface";
-import newTab from "./navigation/new-tab";
-import activateTab from "./navigation/activate-tab";
-import closeTab from "./navigation/close-tab";
-import openUrl from "./navigation/open-url";
-import reloadPage from "./navigation/reload-page";
-import goBack from "./navigation/go-back";
-import { logger } from "../helper/logger";
-import { ACTION } from "../const";
-import click from "./mouse/click";
+import { Browser, Page } from 'puppeteer'
+import { INode } from '../interface'
+import newTab from './navigation/new-tab'
+import activateTab from './navigation/activate-tab'
+import closeTab from './navigation/close-tab'
+import openUrl from './navigation/open-url'
+import reloadPage from './navigation/reload-page'
+import goBack from './navigation/go-back'
+import { logger } from '../helper/logger'
+import { ACTION } from '../const'
+import click from './mouse/click'
 
 const actionHandlers = {
   [ACTION.NEWTAB]: newTab,
@@ -18,7 +18,7 @@ const actionHandlers = {
   [ACTION.RELOAD_PAGE]: reloadPage,
   [ACTION.GO_BACK]: goBack,
   [ACTION.CLICK]: click,
-} as const;
+} as const
 
 export default async function nextNode(
   nodeID: string | null,
@@ -26,28 +26,28 @@ export default async function nextNode(
   browser: Browser,
   pages: Page[],
   activePage: number,
-  proxy?: string
+  proxy?: string,
 ) {
   try {
-    const node: INode | undefined = findNode(nodeID, nodes);
-    if (!node) throw new Error("Node does not exist");
-    const handler = actionHandlers[node.action];
+    const node: INode | undefined = findNode(nodeID, nodes)
+    if (!node) throw new Error('Node does not exist')
+    const handler = actionHandlers[node.action]
     if (handler) {
-      await handler(nodeID, nodes, browser, pages, activePage, proxy);
+      await handler(nodeID, nodes, browser, pages, activePage, proxy)
     }
   } catch (error) {
     if (error instanceof Error) {
-      logger.error(error.message);
+      logger.error(error.message)
     } else {
-      logger.error(error as string);
+      logger.error(error as string)
     }
   }
 }
 
 export function findNode(nodeID: string | null, nodes: INode[]) {
   if (!nodeID) {
-    return undefined;
+    return undefined
   }
-  const node = nodes.find((node) => node.id === nodeID);
-  return node;
+  const node = nodes.find((node) => node.id === nodeID)
+  return node
 }

@@ -1,6 +1,7 @@
-import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "../next-node";
-import { INode, IOpenUrlNode, IReloadPageNode } from "../../interface";
+import { Browser, Page } from 'puppeteer'
+import nextNode, { findNode } from '../next-node'
+import { INode, IReloadPageNode } from '../../interface'
+import { logger } from '~/helper/logger'
 
 export default async function reloadPage(
   nodeID: string | null,
@@ -8,36 +9,19 @@ export default async function reloadPage(
   browser: Browser,
   pages: Page[],
   activePage: number,
-  proxy?: string
+  proxy?: string,
 ) {
-  const node = findNode(nodeID, nodes) as IReloadPageNode;
+  const node = findNode(nodeID, nodes) as IReloadPageNode
   try {
-    await pages[activePage].reload();
+    await pages[activePage].reload()
 
     if (node?.successNode) {
-      proxy
-        ? await nextNode(node?.successNode, nodes, browser, pages, activePage)
-        : await nextNode(
-            node?.successNode,
-            nodes,
-            browser,
-            pages,
-            activePage,
-            proxy
-          );
+      await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   } catch (error) {
     if (node?.failNode) {
-      proxy
-        ? await nextNode(node?.failNode, nodes, browser, pages, activePage)
-        : await nextNode(
-            node?.failNode,
-            nodes,
-            browser,
-            pages,
-            activePage,
-            proxy
-          );
+      logger.error(error as string)
+      await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   }
 }

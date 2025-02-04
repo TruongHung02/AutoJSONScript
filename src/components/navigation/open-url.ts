@@ -1,6 +1,7 @@
-import { Browser, Page } from "puppeteer";
-import nextNode, { findNode } from "../next-node";
-import { INode, IOpenUrlNode } from "../../interface";
+import { Browser, Page } from 'puppeteer'
+import nextNode, { findNode } from '../next-node'
+import { INode, IOpenUrlNode } from '../../interface'
+import { logger } from '~/helper/logger'
 
 export default async function openUrl(
   nodeID: string | null,
@@ -8,36 +9,19 @@ export default async function openUrl(
   browser: Browser,
   pages: Page[],
   activePage: number,
-  proxy?: string
+  proxy?: string,
 ) {
-  const node = findNode(nodeID, nodes) as IOpenUrlNode;
+  const node = findNode(nodeID, nodes) as IOpenUrlNode
   try {
-    await pages[activePage].goto(node.options.url);
+    await pages[activePage].goto(node.options.url)
 
     if (node?.successNode) {
-      proxy
-        ? await nextNode(node?.successNode, nodes, browser, pages, activePage)
-        : await nextNode(
-            node?.successNode,
-            nodes,
-            browser,
-            pages,
-            activePage,
-            proxy
-          );
+      await nextNode(node.successNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   } catch (error) {
     if (node?.failNode) {
-      proxy
-        ? await nextNode(node?.failNode, nodes, browser, pages, activePage)
-        : await nextNode(
-            node?.failNode,
-            nodes,
-            browser,
-            pages,
-            activePage,
-            proxy
-          );
+      logger.error(error as string)
+      await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   }
 }

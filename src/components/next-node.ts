@@ -9,6 +9,8 @@ import goBack from './navigation/go-back'
 import { logger } from '../helper/logger'
 import { ACTION } from '../const'
 import click from './mouse/click'
+import typeText from './keyboard/type-text'
+import pressKey from './keyboard/press-key'
 
 const actionHandlers = {
   [ACTION.NEWTAB]: newTab,
@@ -18,6 +20,8 @@ const actionHandlers = {
   [ACTION.RELOAD_PAGE]: reloadPage,
   [ACTION.GO_BACK]: goBack,
   [ACTION.CLICK]: click,
+  [ACTION.TYPE_TEXT]: typeText,
+  [ACTION.PRESS_KEY]: pressKey,
 } as const
 
 export default async function nextNode(

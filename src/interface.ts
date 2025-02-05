@@ -1,3 +1,4 @@
+import { KeyInput } from 'puppeteer'
 import { ActionType } from './const'
 
 export interface INode {
@@ -45,5 +46,23 @@ export interface IClickNode extends INode {
     x: number
     y: number
     clickCount: number
+  }
+}
+
+export interface ITypeTextNode extends INode {
+  options: {
+    selectorType: 'xpath' | 'css' | 'text' | null
+    selector: string
+    x: number
+    y: number
+    typeSpeed: number
+    typeAsHuman: boolean
+    text: string
+  }
+}
+
+export interface IPressKeyNode extends INode {
+  options: {
+    key: KeyInput[]
   }
 }

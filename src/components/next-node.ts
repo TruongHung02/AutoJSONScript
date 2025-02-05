@@ -36,6 +36,9 @@ export default async function nextNode(
     const node: INode | undefined = findNode(nodeID, nodes)
     if (!node) throw new Error('Node does not exist')
     const handler = actionHandlers[node.action]
+    if (!handler) {
+      throw new Error(`Action ${node.action} is not defined`)
+    }
     if (handler) {
       await handler(nodeID, nodes, browser, pages, activePage, proxy)
     }

@@ -6,9 +6,10 @@ import { logger } from './logger'
 
 export default async function formatNodes(): Promise<INode[]> {
   try {
-    const scriptPath = path.resolve(__dirname, `../jsonscript`)
+    const scriptPath = path.resolve(__dirname, `../../jsonscript`)
     const jsonString = await fs.promises.readFile(`${scriptPath}/${config.script}`, 'utf8')
     const parsedData = JSON.parse(jsonString)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const nodes: any[] = parsedData.script.flow.nodes
 
     const formattedNodes = nodes
@@ -24,7 +25,7 @@ export default async function formatNodes(): Promise<INode[]> {
     await fs.promises.writeFile(scriptPath + '/nodes.json', JSON.stringify(formattedNodes, null, 2), 'utf8')
     return formattedNodes
   } catch (error) {
-    logger.error('Error reading file')
+    logger.error(error as string)
     return []
   }
 }

@@ -13,6 +13,7 @@ export default async function createBrowser(proxyString?: string): Promise<Brows
   ]
 
   if (proxyString) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars
     const [proxyUsername, proxyPassword, IpAddress, port] = proxyString.split(/[@:]/)
 
     argsLaunchOption.push(`--proxy-server=${IpAddress}:${port}`)

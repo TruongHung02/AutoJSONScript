@@ -19,7 +19,7 @@ cd AutoJSONScript
 sudo snap install chromium
 ```
 
-4. Cấu hình file src/config.ts
+5. Cấu hình file src/config.ts
 
 - Lấy đường dẫn cài đặt chromium
 
@@ -28,9 +28,9 @@ which chromium
 ```
 
 - Dán đường dẫn chromium vào file src/config.ts
-  EXECUTABLE_PATH: 'path to chromnium',
+  `EXECUTABLE_PATH: 'path to chromnium'`
 
-4. Chạy lệnh
+6. Run
 
 ```sh
 npm install

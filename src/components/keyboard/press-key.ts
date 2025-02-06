@@ -22,8 +22,8 @@ export default async function pressKey(
       await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   } catch (error) {
+    logger.error(error as string)
     if (node?.failNode) {
-      logger.error(error as string)
       await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   }

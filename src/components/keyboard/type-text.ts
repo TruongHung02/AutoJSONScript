@@ -13,20 +13,27 @@ export default async function typeText(
 ) {
   const node = findNode(nodeID, nodes) as ITypeTextNode
   try {
-    if (node.options.selectorType !== 'xpath') {
-      logger.error('Please select element by xpath')
+    if (node.options.selectorType !== 'css') {
+      logger.error('Please select element by css selector')
       throw new Error('Select element failed')
     } else {
-      const textArea = await pages[activePage].waitForSelector(`::-p-xpath(${node.options.selector})`)
-      await textArea?.type(node.options.text, { delay: 100 })
+      const textArea = await pages[activePage].waitForSelector(
+        // { timeout: 5000 },
+        node.options.selector,
+      )
+      if (!textArea) {
+        throw new Error(`Cant find input text area with selector: ${node.options.selector}`)
+      } else {
+        await textArea.type(node.options.text, { delay: 100 })
+      }
     }
 
     if (node?.successNode) {
       await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   } catch (error) {
+    logger.error(error as string)
     if (node?.failNode) {
-      logger.error(error as string)
       await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
     }
   }

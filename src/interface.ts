@@ -1,5 +1,5 @@
 import { KeyInput } from 'puppeteer'
-import { ActionType } from './const'
+import { ActionType, SelectorType } from './const'
 
 export interface Proxy {
   user: string
@@ -71,5 +71,24 @@ export interface ITypeTextNode extends INode {
 export interface IPressKeyNode extends INode {
   options: {
     key: KeyInput[]
+  }
+}
+
+export interface IMouseMoveNode extends INode {
+  options: {
+    x: number
+    y: number
+  }
+}
+
+export interface IScrollNode extends INode {
+  options: {
+    x: number
+    y: number
+    scrollBy: 'coordinates' | 'selector'
+    scrollDirection: 'Down' | 'Up'
+    scrollSpeed: number
+    selector: string
+    selectorType: SelectorType
   }
 }

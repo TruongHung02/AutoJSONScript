@@ -8,6 +8,8 @@ export const ACTION = {
   CLICK: 'Click',
   PRESS_KEY: 'Press',
   TYPE_TEXT: 'TypeText',
+  MOUSE_MOVE: 'Move',
+  SCROLL: 'Scroll',
   // ELEMENT_EXISTS: "ElementExists",
   // GET_URL: "GetUrl",
   // GET_TEXT: "GetText",

@@ -11,6 +11,8 @@ import { ACTION } from '../const'
 import click from './mouse/click'
 import typeText from './keyboard/type-text'
 import pressKey from './keyboard/press-key'
+import mouseMove from './mouse/mouse-move'
+import scroll from './mouse/scroll'
 
 const actionHandlers = {
   [ACTION.NEWTAB]: newTab,
@@ -22,6 +24,8 @@ const actionHandlers = {
   [ACTION.CLICK]: click,
   [ACTION.TYPE_TEXT]: typeText,
   [ACTION.PRESS_KEY]: pressKey,
+  [ACTION.MOUSE_MOVE]: mouseMove,
+  [ACTION.SCROLL]: scroll,
 } as const
 
 export default async function nextNode(

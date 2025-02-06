@@ -28,8 +28,9 @@ export default async function click(
 
       if (clickElement) {
         for (let i = 0; i < node.options.clickCount; i++) {
-          await clickElement?.click()
+          await clickElement.click()
         }
+        await clickElement.dispose()
       }
     } else if (node.options.selectorBy === 'coordinates') {
       throw new Error('Please select element by CSS selector')

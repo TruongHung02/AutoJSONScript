@@ -29,6 +29,7 @@ export default async function typeText(
       throw new Error(`Cant find input text area with selector: ${node.options.selector}`)
     } else {
       await textArea.type(node.options.text, { delay: 100 })
+      await textArea.dispose()
     }
 
     if (node?.successNode) {

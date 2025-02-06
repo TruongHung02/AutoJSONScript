@@ -1,6 +1,13 @@
 import { KeyInput } from 'puppeteer'
 import { ActionType } from './const'
 
+export interface Proxy {
+  user: string
+  password: string
+  host: string
+  port: string
+}
+
 export interface INode {
   id: string
   action: ActionType

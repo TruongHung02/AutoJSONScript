@@ -22,3 +22,9 @@ export const ACTION = {
   // COOKIES: "Cookies",
 } as const
 export type ActionType = (typeof ACTION)[keyof typeof ACTION]
+
+export const SELECTOR_TYPE = {
+  CSS: 'css',
+  XPATH: 'xpath',
+} as const
+export type SelectorType = (typeof SELECTOR_TYPE)[keyof typeof SELECTOR_TYPE]

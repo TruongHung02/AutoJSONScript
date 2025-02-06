@@ -12,4 +12,9 @@ export const config = {
   //browser config
   headless: false,
   window_size: '1024,768',
+
+  //proxy config
+  useProxy: false,
+  // proxy: 'user:password@host:port',
+  proxy: 'hnskdhkfsk5:HIKnadkf990@103.129.126.199:3160',
 }

@@ -23,7 +23,6 @@ const getTimeStamp = () => {
   return localTime.toISOString().replace('T', ' ').split('.')[0]
 }
 
-
 export const logger = {
   info: (message: string) => {
     console.log(`${color.cyan}[${getTimeStamp()}] [INFO] ${message}${color.reset}`)

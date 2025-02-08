@@ -4,7 +4,7 @@ import path from 'path'
 
 export default async function createBrowser(proxyString?: string): Promise<Browser> {
   const pathToExtension = config.extensions.map((extension) => path.join(process.cwd(), 'extensions', extension))
-  
+
   const argsLaunchOption = [
     `--user-agent=${config.USER_AGENT}`,
     '--enable-cookies',

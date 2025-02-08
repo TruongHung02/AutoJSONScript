@@ -15,14 +15,23 @@ export const color = {
   bgYellow: '\x1b[43m',
 }
 
+const getTimeStamp = () => {
+  const now = new Date()
+  const utc7Offset = 7 * 60 * 60 * 1000 // UTC+7 in milliseconds
+  const localTime = new Date(now.getTime() + utc7Offset)
+
+  return localTime.toISOString().replace('T', ' ').split('.')[0]
+}
+
+
 export const logger = {
   info: (message: string) => {
-    console.log(color.cyan + '[INFO] ' + message + color.reset)
+    console.log(`${color.cyan}[${getTimeStamp()}] [INFO] ${message}${color.reset}`)
   },
   error: (message: string) => {
-    console.log(color.bgRed + color.white + '[ERROR] ' + message + color.reset)
+    console.log(`${color.bgRed}${color.white}[${getTimeStamp()}] [ERROR] ${message}${color.reset}`)
   },
   success: (message: string) => {
-    console.log(color.green + '[SUCCESS] ' + message + color.reset)
+    console.log(`${color.green}[${getTimeStamp()}] [SUCCESS] ${message}${color.reset}`)
   },
 }

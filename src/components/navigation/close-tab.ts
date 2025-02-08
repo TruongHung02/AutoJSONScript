@@ -2,6 +2,7 @@ import { Browser, Page } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
 import { ICloseTabNode, INode } from '../../interface'
 import { logger } from '~/helper/logger'
+import { delay } from '~/until'
 
 export default async function closeTab(
   nodeID: string | null,
@@ -13,6 +14,8 @@ export default async function closeTab(
 ) {
   const node = findNode(nodeID, nodes) as ICloseTabNode
   try {
+    await delay(Number(node.options.nodeSleep))
+
     if (node.options.closeType === 'current') {
       await pages[activePage].close()
     } else {

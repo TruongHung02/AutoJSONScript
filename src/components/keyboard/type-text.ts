@@ -3,7 +3,8 @@ import nextNode, { findNode } from '../next-node'
 import { INode, ITypeTextNode } from '../../interface'
 import { logger } from '../../helper/logger'
 import { SELECTOR_TYPE } from '~/const'
-import { waitForXpathSelector } from '~/until'
+import { delay, waitForXpathSelector } from '~/until'
+import { config } from '~/config'
 
 export default async function typeText(
   nodeID: string | null,
@@ -15,6 +16,8 @@ export default async function typeText(
 ) {
   const node = findNode(nodeID, nodes) as ITypeTextNode
   try {
+    await delay(Number(node.options.nodeSleep))
+
     let textArea: ElementHandle<Element> | null = null
     if (node.options.selectorType === SELECTOR_TYPE.XPATH) {
       textArea = await waitForXpathSelector(pages[activePage], `::-p-xpath(${node.options.selector})`)
@@ -30,6 +33,10 @@ export default async function typeText(
     } else {
       await textArea.type(node.options.text, { delay: 100 })
       await textArea.dispose()
+    }
+
+    if (config.screenshot) {
+      await pages[activePage].screenshot({ path: 'screenshot.png' })
     }
 
     if (node?.successNode) {

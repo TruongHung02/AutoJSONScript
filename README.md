@@ -40,3 +40,12 @@ npm run dev
 ```sh
 
 ```
+
+7. Một số cấu hình thêm
+  1. Proxy
+  2. Extension
+    1. Tạo folder extensions ở root project
+    2. Copy thư mục extension chứa file background.js và manifest.json vào folder extensions vừa tạo
+    3. Thêm tên thư mục extension vào file src/config.js
+    Ví dụ `extensions: ['Toggle', 'Dawn'],`
+  3. Headless mode

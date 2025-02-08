@@ -11,19 +11,22 @@ export interface Proxy {
 export interface INode {
   id: string
   action: ActionType
-  options: object
+  options: {
+    nodeSleep: number
+    nodeTimeout: number
+  }
   successNode: string
   failNode: string
 }
 
 export interface INewTabNode extends INode {
-  options: {
+  options: INode['options'] & {
     url: string
   }
 }
 
 export interface IActivateTabNode extends INode {
-  options: {
+  options: INode['options'] & {
     tabNumber: number
   }
 }
@@ -32,7 +35,7 @@ export interface IActivateTabNode extends INode {
 export interface IOpenUrlNode extends INewTabNode {}
 
 export interface ICloseTabNode extends INode {
-  options: {
+  options: INode['options'] & {
     closeType: 'current' | 'custom'
     tabNumber: number
   }
@@ -45,7 +48,7 @@ export interface IReloadPageNode extends INode {}
 export interface IGoBackNode extends INode {}
 
 export interface IClickNode extends INode {
-  options: {
+  options: INode['options'] & {
     buttonType: 'left' | 'right' | 'center'
     selectorBy: 'selector' | 'coordinates'
     selectorType: 'xpath' | 'css' | 'text' | null
@@ -57,7 +60,7 @@ export interface IClickNode extends INode {
 }
 
 export interface ITypeTextNode extends INode {
-  options: {
+  options: INode['options'] & {
     selectorType: 'xpath' | 'css' | 'text' | null
     selector: string
     x: number
@@ -69,20 +72,20 @@ export interface ITypeTextNode extends INode {
 }
 
 export interface IPressKeyNode extends INode {
-  options: {
+  options: INode['options'] & {
     key: KeyInput[]
   }
 }
 
 export interface IMouseMoveNode extends INode {
-  options: {
+  options: INode['options'] & {
     x: number
     y: number
   }
 }
 
 export interface IScrollNode extends INode {
-  options: {
+  options: INode['options'] & {
     x: number
     y: number
     scrollBy: 'coordinates' | 'selector'

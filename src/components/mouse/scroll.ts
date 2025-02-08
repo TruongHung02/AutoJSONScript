@@ -2,8 +2,9 @@ import { Browser, ElementHandle, Page } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
 import { INode, IScrollNode } from '../../interface'
 import { logger } from '../../helper/logger'
-import { waitForXpathSelector } from '~/until'
+import { delay, waitForXpathSelector } from '~/until'
 import { SELECTOR_TYPE } from '~/const'
+import { config } from '~/config'
 
 export default async function scroll(
   nodeID: string | null,
@@ -15,6 +16,8 @@ export default async function scroll(
 ) {
   const node = findNode(nodeID, nodes) as IScrollNode
   try {
+    await delay(Number(node.options.nodeSleep))
+
     if (node.options.scrollBy === 'selector') {
       let scrollElement: ElementHandle<Element> | null = null
 
@@ -50,6 +53,11 @@ export default async function scroll(
         console.error('Lỗi khi cuộn trang:', error)
       }
     }
+
+    if (config.screenshot) {
+      await pages[activePage].screenshot({ path: 'screenshot.png' })
+    }
+
     if (node?.successNode) {
       await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
     }

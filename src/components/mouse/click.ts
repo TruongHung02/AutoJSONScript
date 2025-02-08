@@ -2,8 +2,9 @@ import { Browser, ElementHandle, Page } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
 import { IClickNode, INode } from '../../interface'
 import { logger } from '../../helper/logger'
-import { waitForXpathSelector } from '~/until'
+import { delay, waitForXpathSelector } from '~/until'
 import { SELECTOR_TYPE } from '~/const'
+import { config } from '~/config'
 
 export default async function click(
   nodeID: string | null,
@@ -15,6 +16,8 @@ export default async function click(
 ) {
   const node = findNode(nodeID, nodes) as IClickNode
   try {
+    await delay(Number(node.options.nodeSleep))
+
     if (node.options.selectorBy === 'selector') {
       let clickElement: ElementHandle<Element> | null = null
 
@@ -35,6 +38,11 @@ export default async function click(
     } else if (node.options.selectorBy === 'coordinates') {
       throw new Error('Please select element by CSS selector')
     }
+
+    if (config.screenshot) {
+      await pages[activePage].screenshot({ path: 'screenshot.png' })
+    }
+
     if (node?.successNode) {
       await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
     }

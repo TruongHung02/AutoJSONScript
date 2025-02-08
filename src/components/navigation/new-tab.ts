@@ -4,7 +4,7 @@ import authProxyPage from '../../helper/auth-proxy-page'
 import { INewTabNode, INode } from '../../interface'
 import { logger } from '~/helper/logger'
 import { config } from '~/config'
-import { formatProxy } from '~/until'
+import { delay, formatProxy } from '~/until'
 
 export default async function newTab(
   nodeID: string | null,
@@ -16,12 +16,14 @@ export default async function newTab(
 ) {
   const node = findNode(nodeID, nodes) as INewTabNode
   try {
+    await delay(Number(node.options.nodeSleep))
+
     const newpage = !config.useProxy
       ? await browser.newPage()
       : await authProxyPage(await browser.newPage(), formatProxy(config.proxy).user, formatProxy(config.proxy).password)
     await newpage.setViewport({
-      width: Number.parseInt(config.window_size.split(',')[0]),
-      height: Number.parseInt(config.window_size.split(',')[1]),
+      width: Number(config.window_size.split(',')[0]),
+      height: Number(config.window_size.split(',')[1]),
     })
     await newpage.goto(node?.options.url, {
       waitUntil: 'networkidle2',
@@ -29,6 +31,10 @@ export default async function newTab(
 
     pages.push(newpage)
     activePage = pages.length - 1
+
+    if (config.screenshot) {
+      await pages[activePage].screenshot({ path: 'screenshot.png' })
+    }
 
     if (node?.successNode) {
       await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)

@@ -10,7 +10,7 @@ export default async function openUrl(actionParams: ActionParams) {
   try {
     await delay(Number(node.options.nodeSleep))
 
-    await pages[activePage].goto(node.options.url)
+    await pages[activePage].goto(node.options.url, { waitUntil: 'networkidle2' })
 
     if (config.screenshot) {
       await pages[activePage].screenshot({ path: 'screenshot.png' })

@@ -10,6 +10,8 @@ export const ACTION = {
   TYPE_TEXT: 'TypeText',
   MOUSE_MOVE: 'Move',
   SCROLL: 'Scroll',
+  LOOP: 'Loop',
+  IF: 'If',
   // ELEMENT_EXISTS: "ElementExists",
   // GET_URL: "GetUrl",
   // GET_TEXT: "GetText",
@@ -20,7 +22,7 @@ export const ACTION = {
   // FILE_UPLOAD: "FileUpload",
   // HTTP: "Http",
   // WRITE_FILE: "WriteFile",
-  // SET_VARIABLE: "SetVariable",
+  SET_VARIABLE: 'SetVariable',
   // COOKIES: "Cookies",
 } as const
 export type ActionType = (typeof ACTION)[keyof typeof ACTION]

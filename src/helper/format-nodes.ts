@@ -1,32 +1,40 @@
 import * as fs from 'fs'
-import { config } from '../config'
 import path from 'path'
-import { INode } from '../interface'
+import { config } from '../config'
+import { INode, IVar } from '../interface'
 import { logger } from './logger'
 
-export default async function formatNodes(): Promise<INode[]> {
+export default async function formatNodes(): Promise<{
+  formattedNodes: INode[]
+  formattedVariables: IVar[]
+} | null> {
   try {
-    const scriptPath = path.resolve(__dirname, `../../jsonscript`)
-    const jsonString = await fs.promises.readFile(`${scriptPath}/${config.script}`, 'utf8')
+    const scriptPath = path.resolve(__dirname, '../../jsonscript')
+    const jsonFilePath = path.join(scriptPath, config.script)
+    const jsonString = await fs.promises.readFile(jsonFilePath, 'utf8')
     const parsedData = JSON.parse(jsonString)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const nodes: any[] = parsedData.script.flow.nodes
+
+    const nodes: any[] = parsedData.script.flow.nodes ?? []
+    const variables: any[] = parsedData.script.variables ?? []
 
     const formattedNodes = nodes
-      .filter((node) => node.type !== 'custom-context-menu' && node.type !== 'helper')
-      .map((node) => ({
-        id: node.id,
-        action: node.data.action,
-        options: node.data.options,
-        successNode: node.data.successNode,
-        failNode: node.data.failNode, // Fixed potential mistake
-        startLoopNode: node.data.startLoopNode || '',
+      .filter(({ type }) => type !== 'custom-context-menu' && type !== 'helper')
+      .map(({ id, data }) => ({
+        id,
+        action: data.action,
+        options: data.options,
+        successNode: data.successNode ?? null,
+        failNode: data.failNode ?? null,
+        startLoopNode: data.startLoopNode ?? null,
       }))
 
-    await fs.promises.writeFile(scriptPath + '/nodes.json', JSON.stringify(formattedNodes, null, 2), 'utf8')
-    return formattedNodes
+    const formattedVariables = variables.map(({ name, value }) => ({ name, value }))
+
+    await fs.promises.writeFile(path.join(scriptPath, 'nodes.json'), JSON.stringify(formattedNodes, null, 2), 'utf8')
+
+    return { formattedNodes, formattedVariables }
   } catch (error) {
     logger.error(error as string)
-    return []
+    return null
   }
 }

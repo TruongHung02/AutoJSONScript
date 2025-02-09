@@ -7,7 +7,8 @@ import { config } from './config'
 import { ActionParams } from './interface'
 ;(async () => {
   const browser = await createBrowser(config.useProxy ? config.proxy : undefined)
-  const nodes = await formatNodes()
+  const { formattedNodes: nodes = [], formattedVariables: variables = [] } = (await formatNodes()) || {}
+
   const pages: Page[] = []
 
   const actionParams: ActionParams = {
@@ -16,6 +17,7 @@ import { ActionParams } from './interface'
     browser,
     pages,
     activePage: 0,
+    variables,
   }
 
   await nextNode(actionParams)

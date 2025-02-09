@@ -12,6 +12,9 @@ import typeText from './keyboard/type-text'
 import pressKey from './keyboard/press-key'
 import mouseMove from './mouse/mouse-move'
 import scroll from './mouse/scroll'
+import loop from './other/loop'
+import setVariable from './other/set-variables'
+import ifAction from './other/if'
 
 const actionHandlers = {
   [ACTION.NEWTAB]: newTab,
@@ -25,18 +28,22 @@ const actionHandlers = {
   [ACTION.PRESS_KEY]: pressKey,
   [ACTION.MOUSE_MOVE]: mouseMove,
   [ACTION.SCROLL]: scroll,
+  [ACTION.LOOP]: loop,
+  [ACTION.SET_VARIABLE]: setVariable,
+  [ACTION.IF]: ifAction,
 } as const
 
 export default async function nextNode(actionParams: ActionParams) {
   try {
     const node: INode | undefined = findNode(actionParams.nodeID, actionParams.nodes)
-    if (!node) throw new Error('Node does not exist')
+    if (!node) throw new Error(`${actionParams.nodeID} Node does not exist`)
     const handler = actionHandlers[node.action]
     if (!handler) {
       throw new Error(`Action ${node.action} is not defined`)
     }
     if (handler) {
       logger.info(`Action: ${node.action} Description: ${node.options.description}`)
+      console.log(actionParams.variables)
       await handler(actionParams)
     }
   } catch (error) {

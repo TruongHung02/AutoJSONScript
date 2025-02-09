@@ -14,6 +14,12 @@ export interface ActionParams {
   pages: Page[]
   activePage: number
   proxy?: string
+  variables: IVar[]
+}
+
+export interface IVar {
+  name: string
+  value: number
 }
 
 export interface INode {
@@ -118,5 +124,21 @@ export interface ILoopNode extends INode {
     operator: '=' | '<' | '>' | '!=' | '>=' | '<='
     rightOperand: number
   }
-  startLoopNodeL: string
+  startLoopNode: string
+}
+
+export interface ISetVariablesNode extends INode {
+  options: INode['options'] & {
+    variableName: string
+    setOperator: '='
+    variableValue: number
+  }
+}
+
+export interface IIfNode extends INode {
+  options: INode['options'] & {
+    leftOperand: string
+    rightOperand: number
+    operator: '=' | '<' | '>' | '!=' | '>=' | '<='
+  }
 }

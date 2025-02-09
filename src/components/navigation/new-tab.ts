@@ -1,19 +1,12 @@
-import { Browser, Page } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
 import authProxyPage from '../../helper/auth-proxy-page'
-import { INewTabNode, INode } from '../../interface'
+import { ActionParams, INewTabNode } from '../../interface'
 import { logger } from '~/helper/logger'
 import { config } from '~/config'
 import { delay, formatProxy } from '~/until'
 
-export default async function newTab(
-  nodeID: string | null,
-  nodes: INode[],
-  browser: Browser,
-  pages: Page[],
-  activePage: number,
-  proxy?: string,
-) {
+export default async function newTab(actionParams: ActionParams) {
+  const { nodeID, nodes, browser, pages, activePage, proxy } = actionParams
   const node = findNode(nodeID, nodes) as INewTabNode
   try {
     await delay(Number(node.options.nodeSleep))
@@ -30,19 +23,21 @@ export default async function newTab(
     })
 
     pages.push(newpage)
-    activePage = pages.length - 1
+    actionParams.activePage = pages.length - 1
 
     if (config.screenshot) {
       await pages[activePage].screenshot({ path: 'screenshot.png' })
     }
 
     if (node?.successNode) {
-      await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
+      actionParams.nodeID = node?.successNode
+      await nextNode(actionParams)
     }
   } catch (error) {
     if (node?.failNode) {
       logger.error(error as string)
-      await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
+      actionParams.nodeID = node?.failNode
+      await nextNode(actionParams)
     }
   }
 }

@@ -1,19 +1,13 @@
-import { Browser, ElementHandle, Page } from 'puppeteer'
+import { ElementHandle } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
-import { INode, ITypeTextNode } from '../../interface'
+import { ActionParams, ITypeTextNode } from '../../interface'
 import { logger } from '../../helper/logger'
 import { SELECTOR_TYPE } from '~/const'
 import { delay, waitForXpathSelector } from '~/until'
 import { config } from '~/config'
 
-export default async function typeText(
-  nodeID: string | null,
-  nodes: INode[],
-  browser: Browser,
-  pages: Page[],
-  activePage: number,
-  proxy?: string,
-) {
+export default async function typeText(actionParams: ActionParams) {
+  const { nodeID, nodes, browser, pages, activePage, proxy } = actionParams
   const node = findNode(nodeID, nodes) as ITypeTextNode
   try {
     await delay(Number(node.options.nodeSleep))
@@ -40,12 +34,14 @@ export default async function typeText(
     }
 
     if (node?.successNode) {
-      await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
+      actionParams.nodeID = node?.successNode
+      await nextNode(actionParams)
     }
   } catch (error) {
     logger.error(error as string)
     if (node?.failNode) {
-      await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
+      actionParams.nodeID = node?.failNode
+      await nextNode(actionParams)
     }
   }
 }

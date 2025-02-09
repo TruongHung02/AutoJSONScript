@@ -1,17 +1,10 @@
-import { Browser, Page } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
-import { ICloseTabNode, INode } from '../../interface'
+import { ActionParams, ICloseTabNode } from '../../interface'
 import { logger } from '~/helper/logger'
 import { delay } from '~/until'
 
-export default async function closeTab(
-  nodeID: string | null,
-  nodes: INode[],
-  browser: Browser,
-  pages: Page[],
-  activePage: number,
-  proxy?: string,
-) {
+export default async function closeTab(actionParams: ActionParams) {
+  const { nodeID, nodes, browser, pages, activePage, proxy } = actionParams
   const node = findNode(nodeID, nodes) as ICloseTabNode
   try {
     await delay(Number(node.options.nodeSleep))
@@ -23,12 +16,14 @@ export default async function closeTab(
     }
 
     if (node?.successNode) {
-      await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
+      actionParams.nodeID = node?.successNode
+      await nextNode(actionParams)
     }
   } catch (error) {
     logger.error(error as string)
     if (node?.failNode) {
-      await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
+      actionParams.nodeID = node?.failNode
+      await nextNode(actionParams)
     }
   }
 }

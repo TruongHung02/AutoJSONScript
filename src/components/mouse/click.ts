@@ -1,20 +1,14 @@
-import { Browser, ElementHandle, Page } from 'puppeteer'
+import { ElementHandle } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
-import { IClickNode, INode } from '../../interface'
+import { ActionParams, IClickNode } from '../../interface'
 import { logger } from '../../helper/logger'
 import { delay, waitForXpathSelector } from '~/until'
 import { SELECTOR_TYPE } from '~/const'
 import { config } from '~/config'
 import { promises as fs } from 'fs'
 
-export default async function click(
-  nodeID: string | null,
-  nodes: INode[],
-  browser: Browser,
-  pages: Page[],
-  activePage: number,
-  proxy?: string,
-) {
+export default async function click(actionParams: ActionParams) {
+  const { nodeID, nodes, browser, pages, activePage, proxy } = actionParams
   const node = findNode(nodeID, nodes) as IClickNode
   try {
     await delay(Number(node.options.nodeSleep))
@@ -58,12 +52,14 @@ export default async function click(
     }
 
     if (node?.successNode) {
-      await nextNode(node?.successNode, nodes, browser, pages, activePage, proxy || undefined)
+      actionParams.nodeID = node?.successNode
+      await nextNode(actionParams)
     }
   } catch (error) {
     logger.error(error as string)
     if (node?.failNode) {
-      await nextNode(node.failNode, nodes, browser, pages, activePage, proxy || undefined)
+      actionParams.nodeID = node?.failNode
+      await nextNode(actionParams)
     }
   }
 }

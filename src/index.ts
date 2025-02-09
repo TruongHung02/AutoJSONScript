@@ -1,27 +1,25 @@
 import { Page } from 'puppeteer'
 import createBrowser from './helper/create-browser'
-import { delay } from './until'
 import formatNodes from './helper/format-nodes'
 import nextNode from './components/next-node'
+import { delay } from './until'
 import { config } from './config'
-
-// (async () => {
-//   // const browser = await createBrowser("user:1735970485@157.66.252.255:41235");
-//   const browser = await createBrowser();
-
-//   await newTab(browser, "https://youtube.com");
-
-//   await browser.close();
-// })();
+import { ActionParams } from './interface'
 ;(async () => {
+  const browser = await createBrowser(config.useProxy ? config.proxy : undefined)
   const nodes = await formatNodes()
   const pages: Page[] = []
-  const activePage: number = 0
 
-  const browser = config.useProxy ? await createBrowser(config.proxy) : await createBrowser()
+  const actionParams: ActionParams = {
+    nodeID: nodes[0].successNode,
+    nodes,
+    browser,
+    pages,
+    activePage: 0,
+  }
 
-  await nextNode(nodes[0].successNode, nodes, browser, pages, activePage)
+  await nextNode(actionParams)
 
-  await delay(10000)
+  await delay(10_000)
   await browser.close()
 })()

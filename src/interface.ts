@@ -1,4 +1,4 @@
-import { KeyInput } from 'puppeteer'
+import { Browser, KeyInput, Page } from 'puppeteer'
 import { ActionType, SelectorType } from './const'
 
 export interface Proxy {
@@ -6,6 +6,14 @@ export interface Proxy {
   password: string
   host: string
   port: string
+}
+export interface ActionParams {
+  nodeID: string | null
+  nodes: INode[]
+  browser: Browser
+  pages: Page[]
+  activePage: number
+  proxy?: string
 }
 
 export interface INode {

@@ -1,5 +1,4 @@
-import { Browser, Page } from 'puppeteer'
-import { INode } from '../interface'
+import { ActionParams, INode } from '../interface'
 import newTab from './navigation/new-tab'
 import activateTab from './navigation/activate-tab'
 import closeTab from './navigation/close-tab'
@@ -28,16 +27,9 @@ const actionHandlers = {
   [ACTION.SCROLL]: scroll,
 } as const
 
-export default async function nextNode(
-  nodeID: string | null,
-  nodes: INode[],
-  browser: Browser,
-  pages: Page[],
-  activePage: number,
-  proxy?: string,
-) {
+export default async function nextNode(actionParams: ActionParams) {
   try {
-    const node: INode | undefined = findNode(nodeID, nodes)
+    const node: INode | undefined = findNode(actionParams.nodeID, actionParams.nodes)
     if (!node) throw new Error('Node does not exist')
     const handler = actionHandlers[node.action]
     if (!handler) {
@@ -45,7 +37,7 @@ export default async function nextNode(
     }
     if (handler) {
       logger.info(`Action: ${node.action} Description: ${node.options.description}`)
-      await handler(nodeID, nodes, browser, pages, activePage, proxy)
+      await handler(actionParams)
     }
   } catch (error) {
     if (error instanceof Error) {

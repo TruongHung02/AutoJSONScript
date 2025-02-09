@@ -15,6 +15,7 @@ import scroll from './mouse/scroll'
 import loop from './other/loop'
 import setVariable from './other/set-variables'
 import ifAction from './other/if'
+import elementExist from './other/element-exist'
 
 const actionHandlers = {
   [ACTION.NEWTAB]: newTab,
@@ -31,6 +32,7 @@ const actionHandlers = {
   [ACTION.LOOP]: loop,
   [ACTION.SET_VARIABLE]: setVariable,
   [ACTION.IF]: ifAction,
+  [ACTION.ELEMENT_EXISTS]: elementExist,
 } as const
 
 export default async function nextNode(actionParams: ActionParams) {
@@ -43,7 +45,6 @@ export default async function nextNode(actionParams: ActionParams) {
     }
     if (handler) {
       logger.info(`Action: ${node.action} Description: ${node.options.description}`)
-      console.log(actionParams.variables)
       await handler(actionParams)
     }
   } catch (error) {

@@ -142,3 +142,10 @@ export interface IIfNode extends INode {
     operator: '=' | '<' | '>' | '!=' | '>=' | '<='
   }
 }
+
+export interface IElementExistNode extends INode {
+  options: INode['options'] & {
+    selectorType: 'xpath' | 'css' | 'text' | null
+    selector: string
+  }
+}

@@ -12,7 +12,7 @@ export const ACTION = {
   SCROLL: 'Scroll',
   LOOP: 'Loop',
   IF: 'If',
-  // ELEMENT_EXISTS: "ElementExists",
+  ELEMENT_EXISTS: 'ElementExists',
   // GET_URL: "GetUrl",
   // GET_TEXT: "GetText",
   // GET_VALUE: "GetValue",

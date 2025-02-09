@@ -14,6 +14,7 @@ export interface INode {
   options: {
     nodeSleep: number
     nodeTimeout: number
+    description?: string
   }
   successNode: string
   failNode: string
@@ -94,4 +95,20 @@ export interface IScrollNode extends INode {
     selector: string
     selectorType: SelectorType
   }
+}
+export interface ILoopNode extends INode {
+  options: INode['options'] & {
+    loopType: 'While' | 'For'
+    forFrom: string
+    forTo: string
+    forEachFrom: string
+    forEachValue: string
+    whileLeftOperand: string
+    whileOperator: null
+    whileRightperand: string
+    leftOperand: string
+    operator: '=' | '<' | '>' | '!=' | '>=' | '<='
+    rightOperand: number
+  }
+  startLoopNodeL: string
 }

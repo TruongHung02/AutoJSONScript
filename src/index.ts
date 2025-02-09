@@ -22,6 +22,6 @@ import { config } from './config'
 
   await nextNode(nodes[0].successNode, nodes, browser, pages, activePage)
 
-  await delay(10)
+  await delay(10000)
   await browser.close()
 })()

@@ -44,7 +44,7 @@ export default async function nextNode(
       throw new Error(`Action ${node.action} is not defined`)
     }
     if (handler) {
-      logger.info(`Start node: ID: ${node.id} Action: ${node.action}`)
+      logger.info(`Action: ${node.action} Description: ${node.options.description}`)
       await handler(nodeID, nodes, browser, pages, activePage, proxy)
     }
   } catch (error) {

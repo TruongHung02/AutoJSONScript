@@ -20,6 +20,7 @@ export default async function formatNodes(): Promise<INode[]> {
         options: node.data.options,
         successNode: node.data.successNode,
         failNode: node.data.failNode, // Fixed potential mistake
+        startLoopNode: node.data.startLoopNode || '',
       }))
 
     await fs.promises.writeFile(scriptPath + '/nodes.json', JSON.stringify(formattedNodes, null, 2), 'utf8')

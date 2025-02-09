@@ -15,6 +15,7 @@ export default async function createBrowser(proxyString?: string): Promise<Brows
     '--disable-dev-shm-usage',
     `--disable-extensions-except=${pathToExtension}`,
     `--load-extension=${pathToExtension}`,
+    '--enable-features=ClipboardAPI',
   ]
 
   if (proxyString) {

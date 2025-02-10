@@ -16,7 +16,7 @@ export const config = {
   screenshot: false, // true / false
 
   //proxy config
-  useProxy: false, // true / false
+  useProxy: true, // true / false
   // proxy: 'user:password@host:port',
   proxy: 'hnskdhkfsk5:HIKnadkf990@103.129.126.199:3160',
 

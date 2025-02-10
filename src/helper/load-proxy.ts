@@ -11,11 +11,6 @@ export async function readFileLines(filePath: string) {
 
 export default async function loadProxies() {
   const data = await fs.readFile(process.cwd() + '/proxies.txt', 'utf-8')
-  const lines = data.split(/\r?\n/) // Hỗ trợ cả Windows (\r\n) và Linux (\n)
-  const proxies: string[] = []
-  for (const line of lines) {
-    console.log(line)
-    proxies.push(line)
-  }
-  return proxies
+  const lines = data.split(/\r?\n/).filter(Boolean) // Loại bỏ dòng trống
+  return lines
 }

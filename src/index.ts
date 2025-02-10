@@ -46,6 +46,5 @@ process.on('SIGINT', closeAllBrowsers)
       : [await createBrowser()]
 
   browsers.push(...createdBrowsers) // Keep track of browsers
-
   await Promise.all(browsers.map((browser, idx) => run(browser, proxies[idx])))
 })()

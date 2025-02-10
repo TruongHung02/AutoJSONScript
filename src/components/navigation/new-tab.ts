@@ -28,7 +28,9 @@ export default async function newTab(actionParams: ActionParams) {
         await browser.close()
         throw new Error(`Proxy error: ${proxy}`)
       }
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof Error && error.message.includes('Proxy error')) throw error
+    }
 
     pages.push(newpage)
     actionParams.activePage = pages.length - 1

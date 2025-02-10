@@ -21,5 +21,5 @@ export const config = {
   proxy: 'hnskdhkfsk5:HIKnadkf990@103.129.126.199:3160',
 
   //extensions list
-  extensions: ['Toggle', 'Dawn'],
+  extensions: [],
 }

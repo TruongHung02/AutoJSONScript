@@ -19,30 +19,37 @@ cd AutoJSONScript
 sudo snap install chromium
 ```
 
-5. Cấu hình file src/config.ts
-
 - Lấy đường dẫn cài đặt chromium
 
 ```sh
 which chromium
 ```
 
+5. Cấu hình
+
+```sh
+nano src/config.ts
+```
+
 - Dán đường dẫn chromium vào file src/config.ts
   `EXECUTABLE_PATH: 'path to chromnium'`
 
-6. Run
+6. Một số cấu hình thêm
+
+   1. Proxy
+      `useProxy: true`
+      `proxy: user:password@host:port`
+   2. Extension
+      1. Tạo folder extensions ở root project
+      2. Copy thư mục extension chứa file background.js và manifest.json vào folder extensions vừa tạo
+      3. Thêm tên thư mục extension vào file src/config.js
+         Ví dụ `extensions: ['Toggle', 'Dawn'],`
+   3. Headless mode
+      `headless: true` 
+
+7. Run
 
 ```sh
 npm install
 npm run dev
 ```
-
-
-7. Một số cấu hình thêm
-    1. Proxy
-    2. Extension
-        1. Tạo folder extensions ở root project
-        2. Copy thư mục extension chứa file background.js và manifest.json vào folder extensions vừa tạo
-        3. Thêm tên thư mục extension vào file src/config.js
-        Ví dụ `extensions: ['Toggle', 'Dawn'],`
-    3. Headless mode

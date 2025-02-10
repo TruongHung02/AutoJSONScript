@@ -11,9 +11,9 @@ export default async function newTab(actionParams: ActionParams) {
   try {
     await delay(Number(node.options.nodeSleep))
 
-    const newpage = !config.useProxy
+    const newpage = !proxy
       ? await browser.newPage()
-      : await authProxyPage(await browser.newPage(), formatProxy(config.proxy).user, formatProxy(config.proxy).password)
+      : await authProxyPage(await browser.newPage(), formatProxy(proxy).user, formatProxy(proxy).password)
     await newpage.setViewport({
       width: Number(config.window_size.split(',')[0]),
       height: Number(config.window_size.split(',')[1]),

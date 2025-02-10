@@ -7,7 +7,9 @@ import { config } from './config'
 import { ActionParams } from './interface'
 import loadProxies from './helper/load-proxy'
 
-async function run(browser: Browser) {
+const browsers: Browser[] = [] // Store all browser instances
+
+async function run(browser: Browser, proxy?: string) {
   const { formattedNodes: nodes = [], formattedVariables: variables = [] } = (await formatNodes()) || {}
 
   const pages: Page[] = []
@@ -19,6 +21,7 @@ async function run(browser: Browser) {
     pages,
     activePage: 0,
     variables,
+    proxy,
   }
 
   await nextNode(actionParams)
@@ -27,13 +30,22 @@ async function run(browser: Browser) {
   await browser.close()
 }
 
+// Handle Ctrl + C to close all browsers gracefully
+async function closeAllBrowsers() {
+  console.log('\nClosing all browsers...')
+  await Promise.all(browsers.map((browser) => browser.close()))
+  process.exit()
+}
+
+process.on('SIGINT', closeAllBrowsers)
 ;(async () => {
   const proxies = await loadProxies()
-  // const browser = await createBrowser(config.useProxy ? config.proxy : undefined)
-  const browsers =
+  const createdBrowsers =
     config.useProxy && proxies.length
       ? await Promise.all(proxies.map((proxy) => createBrowser(proxy)))
       : [await createBrowser()]
 
-  Promise.all(browsers.map((browser) => run(browser)))
+  browsers.push(...createdBrowsers) // Keep track of browsers
+
+  await Promise.all(browsers.map((browser, idx) => run(browser, proxies[idx])))
 })()

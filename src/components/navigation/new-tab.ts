@@ -22,11 +22,13 @@ export default async function newTab(actionParams: ActionParams) {
       waitUntil: 'networkidle2',
     })
 
-    const elementError = await newpage.waitForSelector('#reload-button')
-    if (elementError) {
-      await browser.close()
-      throw new Error(`Proxy error: ${proxy}`)
-    }
+    try {
+      const elementError = await newpage.waitForSelector('#reload-button', { timeout: 2000 })
+      if (elementError) {
+        await browser.close()
+        throw new Error(`Proxy error: ${proxy}`)
+      }
+    } catch (error) {}
 
     pages.push(newpage)
     actionParams.activePage = pages.length - 1

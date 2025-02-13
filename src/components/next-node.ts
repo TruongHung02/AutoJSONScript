@@ -16,6 +16,8 @@ import loop from './other/loop'
 import setVariable from './other/set-variables'
 import ifAction from './other/if'
 import elementExist from './other/element-exist'
+import typeInputText from './custom-node/type-input-text'
+import pasteWithInput from './custom-node/paste-with-input'
 
 const actionHandlers = {
   [ACTION.NEWTAB]: newTab,
@@ -33,6 +35,8 @@ const actionHandlers = {
   [ACTION.SET_VARIABLE]: setVariable,
   [ACTION.IF]: ifAction,
   [ACTION.ELEMENT_EXISTS]: elementExist,
+  [ACTION.TYPE_INPUT_TEXT]: typeInputText,
+  [ACTION.PASTE_WITH_INPUT]: pasteWithInput,
 } as const
 
 export default async function nextNode(actionParams: ActionParams) {

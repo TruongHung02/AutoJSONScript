@@ -1,16 +1,15 @@
 import * as fs from 'fs'
 import path from 'path'
-import { config } from '../config'
 import { INode, IVar } from '../interface'
 import { logger } from './logger'
 
-export default async function formatNodes(): Promise<{
+export default async function formatNodes(script: string): Promise<{
   formattedNodes: INode[]
   formattedVariables: IVar[]
 } | null> {
   try {
     const scriptPath = path.resolve(__dirname, '../../jsonscript')
-    const jsonFilePath = path.join(scriptPath, config.script)
+    const jsonFilePath = path.join(scriptPath, script)
     const jsonString = await fs.promises.readFile(jsonFilePath, 'utf8')
     const parsedData = JSON.parse(jsonString)
 

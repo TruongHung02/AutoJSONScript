@@ -24,6 +24,8 @@ export const ACTION = {
   // WRITE_FILE: "WriteFile",
   SET_VARIABLE: 'SetVariable',
   // COOKIES: "Cookies",
+  TYPE_INPUT_TEXT: 'TypeInputText',
+  PASTE_WITH_INPUT: 'PasteInputText',
 } as const
 export type ActionType = (typeof ACTION)[keyof typeof ACTION]
 

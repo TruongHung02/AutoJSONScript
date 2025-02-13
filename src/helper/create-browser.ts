@@ -2,7 +2,7 @@ import puppeteer, { Browser } from 'puppeteer'
 import { config } from '../config'
 import path from 'path'
 
-export default async function createBrowser(proxyString?: string): Promise<Browser> {
+export async function createBrowser(proxyString?: string): Promise<Browser> {
   const pathToExtension = config.extensions.map((extension) => path.join(process.cwd(), 'extensions', extension))
 
   const argsLaunchOption = [
@@ -32,4 +32,12 @@ export default async function createBrowser(proxyString?: string): Promise<Brows
   })
 
   return browser
+}
+
+export default async function createBrowsers(proxies: string[]) {
+  const createdBrowsers =
+    config.useProxy && proxies.length
+      ? await Promise.all(proxies.map((proxy) => createBrowser(proxy)))
+      : [await createBrowser()]
+  return createdBrowsers
 }

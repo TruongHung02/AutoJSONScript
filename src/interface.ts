@@ -15,6 +15,11 @@ export interface ActionParams {
   activePage: number
   proxy?: string
   variables: IVar[]
+  customVariables?: CustomVariables
+}
+
+export interface CustomVariables {
+  text?: string
 }
 
 export interface IVar {
@@ -147,5 +152,27 @@ export interface IElementExistNode extends INode {
   options: INode['options'] & {
     selectorType: 'xpath' | 'css' | 'text' | null
     selector: string
+  }
+}
+
+export interface ITypeInputTextNode extends INode {
+  options: INode['options'] & {
+    selectorType: SelectorType
+    selector: string
+    x: number
+    y: number
+    typeSpeed: number
+    typeAsHuman: boolean
+  }
+}
+
+export interface IPasteInputTextNode extends INode {
+  options: INode['options'] & {
+    selectorType: SelectorType
+    selector: string
+    x: number
+    y: number
+    typeSpeed: number
+    typeAsHuman: boolean
   }
 }

@@ -1,16 +1,16 @@
 import { Browser, Page } from 'puppeteer'
-import createBrowser from './helper/create-browser'
 import formatNodes from './helper/format-nodes'
 import nextNode from './components/next-node'
 import { delay } from './until'
-import { config } from './config'
-import { ActionParams } from './interface'
+import { ActionParams, CustomVariables } from './interface'
+import createBrowsers from './helper/create-browser'
 import loadProxies from './helper/load-proxy'
+import loadWalletKey from './helper/load-wallet-key'
 
 const browsers: Browser[] = [] // Store all browser instances
 
-async function run(browser: Browser, proxy?: string) {
-  const { formattedNodes: nodes = [], formattedVariables: variables = [] } = (await formatNodes()) || {}
+async function run(browser: Browser, script: string, proxy?: string, customVariables?: CustomVariables) {
+  const { formattedNodes: nodes = [], formattedVariables: variables = [] } = (await formatNodes(script)) || {}
 
   const pages: Page[] = []
 
@@ -22,6 +22,7 @@ async function run(browser: Browser, proxy?: string) {
     activePage: 0,
     variables,
     proxy,
+    customVariables,
   }
 
   await nextNode(actionParams)
@@ -40,11 +41,19 @@ async function closeAllBrowsers() {
 process.on('SIGINT', closeAllBrowsers)
 ;(async () => {
   const proxies = await loadProxies()
-  const createdBrowsers =
-    config.useProxy && proxies.length
-      ? await Promise.all(proxies.map((proxy) => createBrowser(proxy)))
-      : [await createBrowser()]
+  const createdBrowsers = await createBrowsers(proxies)
 
   browsers.push(...createdBrowsers) // Keep track of browsers
-  await Promise.all(browsers.map((browser, idx) => run(browser, proxies[idx])))
+  await Promise.all(
+    browsers.map(async (browser, idx) => {
+      //Xử lý điều kiện đọc các mã ví trước khi
+      const walletKeys = await loadWalletKey()
+
+      if (idx < walletKeys.length) {
+        run(browser, 'recoverWalletMining.genlogin.json', proxies[idx], { text: walletKeys[idx] })
+      } else {
+        run(browser, 'auto.genlogin.json', proxies[idx])
+      }
+    }),
+  )
 })()

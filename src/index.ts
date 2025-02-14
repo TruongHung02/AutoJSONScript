@@ -52,7 +52,7 @@ process.on('SIGINT', closeAllBrowsers)
       if (idx < walletKeys.length) {
         run(browser, 'recoverWalletMining.genlogin.json', proxies[idx], { text: walletKeys[idx] })
       } else {
-        run(browser, 'auto.genlogin.json', proxies[idx])
+        run(browser, 'autoCreateWalletAndMiningConet.genlogin.json', proxies[idx])
       }
     }),
   )

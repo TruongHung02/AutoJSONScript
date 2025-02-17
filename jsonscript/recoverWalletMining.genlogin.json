@@ -332,7 +332,7 @@
               "scrollSpeed": 1,
               "timeout": "10"
             },
-            "successNode": "wBrkr",
+            "successNode": "en0dd",
             "failNode": null
           },
           "events": {},
@@ -371,7 +371,7 @@
           },
           "events": {},
           "id": "wBrkr",
-          "position": { "x": 1994.054615047097, "y": 160.13701293453266 },
+          "position": { "x": 2024.054615047097, "y": 145.85129864881839 },
           "label": "Loop",
           "sourcePosition": "right",
           "targetPosition": "left",
@@ -443,6 +443,37 @@
           "sourcePosition": "right",
           "targetPosition": "left",
           "class": ""
+        },
+        {
+          "type": "custom",
+          "data": {
+            "icon": "actionClick",
+            "action": "Click",
+            "options": {
+              "disabled": false,
+              "nodeSleep": "0",
+              "nodeTimeout": "30",
+              "timeoutNextNode": "successNode",
+              "breakpoint": false,
+              "buttonType": "left",
+              "selectorBy": "selector",
+              "selectorType": "css",
+              "selector": "#root > div.MuiStack-root.css-10vdxbb > div.MuiStack-root.css-6ewln5 > div > div > div.sc-ckdEwu.cAzSfD > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-sm-8.MuiGrid-grid-md-12.css-j6lwrp > div > div.sc-eAKtBH.ffwpOA > div > div.MuiStack-root.css-16vk4tl > div > div.MuiFormGroup-root.css-acgl57 > label > span.MuiButtonBase-root.MuiCheckbox-root.MuiCheckbox-colorPrimary.MuiCheckbox-sizeMedium.PrivateSwitchBase-root.MuiCheckbox-root.MuiCheckbox-colorPrimary.MuiCheckbox-sizeMedium.MuiCheckbox-root.MuiCheckbox-colorPrimary.MuiCheckbox-sizeMedium.css-13wwtep > input",
+              "x": "0",
+              "y": "0",
+              "timeout": "10",
+              "clickCount": 1,
+              "description": "auto reconect"
+            },
+            "successNode": "wBrkr",
+            "failNode": null
+          },
+          "id": "en0dd",
+          "position": { "x": 1864.2142857142862, "y": 184.14285714285717 },
+          "label": "Click",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "class": ""
         }
       ],
       "edges": [
@@ -459,9 +490,9 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-start_EfYij target-jtHO0",
           "id": "vueflow__edge-start_EfYijstart_EfYij__handle-right-jtHO0successNode",
-          "sourceX": 132.99996512276786,
+          "sourceX": 133.19998604910717,
           "sourceY": 140,
-          "targetX": 307.0252204547026,
+          "targetX": 307.025307647783,
           "targetY": 212.65466055077357
         },
         {
@@ -477,9 +508,9 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-jtHO0 target--vjC9",
           "id": "vueflow__edge-jtHO0successNode--vjC9successNode",
-          "sourceX": 435.0251855774705,
+          "sourceX": 435.0252727705508,
           "sourceY": 201.6546431121575,
-          "targetX": 470.12682242861086,
+          "targetX": 470.12673523553053,
           "targetY": 216.19778397899898
         },
         {
@@ -495,9 +526,9 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source--vjC9 target-BFQgd",
           "id": "vueflow__edge--vjC9successNode-BFQgdsuccessNode",
-          "sourceX": 598.1267875513787,
-          "sourceY": 205.1977665403829,
-          "targetX": 647.0114954311002,
+          "sourceX": 598.126613165218,
+          "sourceY": 205.1978101369231,
+          "targetX": 647.011669817261,
           "targetY": 232.089781986573
         },
         {
@@ -515,7 +546,7 @@
           "id": "vueflow__edge-BFQgdsuccessNode-xGNiVsuccessNode",
           "sourceX": 775.0116349400288,
           "sourceY": 221.08976454795692,
-          "targetX": 839.0975587783732,
+          "targetX": 839.0973843922125,
           "targetY": 245.21795425369945
         },
         {
@@ -533,7 +564,7 @@
           "id": "vueflow__edge-xGNiVsuccessNode-u26o8successNode",
           "sourceX": 967.0973495149804,
           "sourceY": 234.21793681508336,
-          "targetX": 1038.0930120906044,
+          "targetX": 1038.0928377044438,
           "targetY": 261.8009086963854
         },
         {
@@ -549,8 +580,8 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-u26o8 target-Tmv8r",
           "id": "vueflow__edge-u26o8successNode-Tmv8rsuccessNode",
-          "sourceX": 1166.0929772133723,
-          "sourceY": 250.80089125776934,
+          "sourceX": 1166.0928028272115,
+          "sourceY": 250.80093485430953,
           "targetX": 1259.199071326417,
           "targetY": 271.4742987879522
         },
@@ -567,8 +598,8 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-Tmv8r target-uRMXW",
           "id": "vueflow__edge-Tmv8rsuccessNode-uRMXWsuccessNode",
-          "sourceX": 1387.198862063024,
-          "sourceY": 260.4743685424165,
+          "sourceX": 1387.1990364491849,
+          "sourceY": 260.47432494587633,
           "targetX": 1434.287431983776,
           "targetY": 265.5320734459898
         },
@@ -585,8 +616,8 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-uRMXW target-YzStC",
           "id": "vueflow__edge-uRMXWsuccessNode-YzStCsuccessNode",
-          "sourceX": 1562.2872227203832,
-          "sourceY": 254.53214320045407,
+          "sourceX": 1562.287397106544,
+          "sourceY": 254.5320996039139,
           "targetX": 1635.0793720272984,
           "targetY": 294.2758611466454
         },
@@ -603,28 +634,10 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-YzStC target-H7Fnv",
           "id": "vueflow__edge-YzStCsuccessNode-H7FnvsuccessNode",
-          "sourceX": 1763.079511536227,
-          "sourceY": 283.27584370802936,
-          "targetX": 1807.1068638392858,
+          "sourceX": 1763.0793371500663,
+          "sourceY": 283.2758873045695,
+          "targetX": 1807.1070382254466,
           "targetY": 298.57142857142856
-        },
-        {
-          "sourceHandle": "successNode",
-          "targetHandle": "successNode",
-          "type": "custom",
-          "source": "H7Fnv",
-          "target": "wBrkr",
-          "updatable": true,
-          "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
-          "events": {},
-          "animated": true,
-          "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
-          "class": "source-H7Fnv target-wBrkr",
-          "id": "vueflow__edge-H7FnvsuccessNode-wBrkrsuccessNode",
-          "sourceX": 1935.1070033482142,
-          "sourceY": 287.5714111328125,
-          "targetX": 1990.0545452926328,
-          "targetY": 220.13701293453266
         },
         {
           "sourceHandle": "startLoopNode",
@@ -639,8 +652,8 @@
           "style": { "stroke": "#f0a020", "strokeWidth": 2 },
           "class": "source-wBrkr target-huhDO",
           "id": "vueflow__edge-wBrkrstartLoopNode-huhDOsuccessNode",
-          "sourceX": 2033.2419755381684,
-          "sourceY": 280.13710012761305,
+          "sourceX": 2063.25453134174,
+          "sourceY": 265.8512986488184,
           "targetX": 1999.8572126116073,
           "targetY": 377.1428571428572
         },
@@ -657,9 +670,9 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-huhDO target-vZFbw",
           "id": "vueflow__edge-huhDOsuccessNode-vZFbwsuccessNode",
-          "sourceX": 2127.8570033482147,
-          "sourceY": 366.14283970424117,
-          "targetX": 2178.08801833691,
+          "sourceX": 2127.8571777343755,
+          "sourceY": 366.1429268973215,
+          "targetX": 2178.0876695645884,
           "targetY": 372.44462702435106
         },
         {
@@ -675,10 +688,10 @@
           "style": { "stroke": "#d03050", "strokeWidth": 2 },
           "class": "source-huhDO target-wBrkr",
           "id": "vueflow__edge-huhDOfailNode-wBrkrendLoopNode",
-          "sourceX": 2127.8570033482147,
-          "sourceY": 388.14278738839295,
-          "targetX": 2074.8515598015615,
-          "targetY": 280.13710012761305
+          "sourceX": 2127.8571777343755,
+          "sourceY": 388.1428745814733,
+          "targetX": 2104.854698752454,
+          "targetY": 265.8512986488184
         },
         {
           "sourceHandle": "successNode",
@@ -695,13 +708,49 @@
           "id": "vueflow__edge-vZFbwsuccessNode-wBrkrendLoopNode",
           "sourceX": 2306.087809073517,
           "sourceY": 361.444609585735,
-          "targetX": 2074.8515598015615,
-          "targetY": 280.13710012761305
+          "targetX": 2104.854698752454,
+          "targetY": 265.8512986488184
+        },
+        {
+          "sourceHandle": "successNode",
+          "targetHandle": "successNode",
+          "type": "custom",
+          "source": "H7Fnv",
+          "target": "en0dd",
+          "updatable": true,
+          "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
+          "events": {},
+          "animated": true,
+          "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
+          "class": "source-H7Fnv target-en0dd",
+          "id": "vueflow__edge-H7FnvsuccessNode-en0ddsuccessNode",
+          "sourceX": 1935.107177734375,
+          "sourceY": 287.5714111328125,
+          "targetX": 1868.21426827567,
+          "targetY": 214.14285714285717
+        },
+        {
+          "sourceHandle": "successNode",
+          "targetHandle": "successNode",
+          "type": "custom",
+          "source": "en0dd",
+          "target": "wBrkr",
+          "updatable": true,
+          "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
+          "events": {},
+          "animated": true,
+          "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
+          "class": "source-en0dd target-wBrkr",
+          "id": "vueflow__edge-en0ddsuccessNode-wBrkrsuccessNode",
+          "sourceX": 1996.2143205915183,
+          "sourceY": 203.14288330078128,
+          "targetX": 2020.0547196787934,
+          "targetY": 205.85129864881839
         }
       ],
-      "position": [724.9, 234],
-      "zoom": 0.7,
-      "viewport": { "x": 724.9, "y": 234, "zoom": 0.7 }
+      "position": [-3467.41556963324, -281.1428571428571],
+      "zoom": 2,
+      "viewport": { "x": -3467.41556963324, "y": -281.1428571428571, "zoom": 2 }
     },
     "variables": [{ "id": "lMGRq", "name": "true", "label": "", "value": "1", "secret": false }]
   },
@@ -713,6 +762,6 @@
   "enableContextMenu": false,
   "enableInput": true,
   "createdAt": "2025-02-13T10:27:39.297Z",
-  "updatedAt": "2025-02-13T11:00:49.443Z",
+  "updatedAt": "2025-02-17T03:16:53.893Z",
   "expiredAt": null
 }

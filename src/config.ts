@@ -10,10 +10,10 @@ export const config = {
   EXECUTABLE_PATH: '/snap/bin/chromium',
 
   //browser config
-  headless: false, // true / false
+  headless: true, // true / false
   window_size: '1024,768',
   //screen shot after each node
-  screenshot: false, // true / false
+  screenshot: true, // true / false
 
   //proxy config
   useProxy: true, // true / false

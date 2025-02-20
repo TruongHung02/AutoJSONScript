@@ -1,4 +1,4 @@
-import { ElementHandle, Page } from 'puppeteer'
+import { ElementHandle, Frame, Page } from 'puppeteer'
 import { Proxy } from './interface'
 
 export function delay(seconds: number): Promise<void> {
@@ -11,11 +11,14 @@ export function timeoutPromise(ms: number = 30000): Promise<void> {
   })
 }
 
-export function waitForXpathSelector(page: Page, xpathSelector: string, timeout: number = 30) {
+export function waitForXpathSelector(page: Page | Frame, xpathSelector: string, timeout: number = 30) {
   const timeoutPromise = new Promise<ElementHandle<Element> | null>((_, reject) =>
     setTimeout(() => reject(new Error(`Cant find element with Xpath selector: ${xpathSelector}`)), timeout * 1000),
   )
-  return Promise.race([page.waitForSelector(xpathSelector), timeoutPromise])
+  return Promise.race([
+    page.waitForSelector(`::-p-xpath(${xpathSelector})`, { timeout: timeout * 1000 }),
+    timeoutPromise,
+  ])
 }
 
 export async function fetchWithTimeout<T>(fn: () => Promise<T>, timeout: number): Promise<T> {

@@ -1,4 +1,3 @@
-import { ElementHandle } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
 import { ActionParams, ITypeTextNode } from '../../interface'
 import { logger } from '../../helper/logger'
@@ -9,18 +8,20 @@ import { config } from '~/config'
 export default async function typeText(actionParams: ActionParams) {
   const { nodeID, nodes, browser, pages, activePage, proxy } = actionParams
   const node = findNode(nodeID, nodes) as ITypeTextNode
+  const page = pages[activePage] // Tối ưu truy cập
   try {
     await delay(Number(node.options.nodeSleep))
 
-    let textArea: ElementHandle<Element> | null = null
-    if (node.options.selectorType === SELECTOR_TYPE.XPATH) {
-      textArea = await waitForXpathSelector(pages[activePage], `::-p-xpath(${node.options.selector})`)
-      // textArea = await pages[activePage].waitForSelector(node.options.selector)
-    } else if (node.options.selectorType === SELECTOR_TYPE.CSS) {
-      textArea = await pages[activePage].waitForSelector(node.options.selector)
-    } else {
-      throw new Error('Select element failed. Select element by CSS Selector or Xpath Selector')
+    const selectorMap = {
+      [SELECTOR_TYPE.XPATH]: () => waitForXpathSelector(page, node.options.selector),
+      [SELECTOR_TYPE.CSS]: () => page.waitForSelector(node.options.selector),
+      [SELECTOR_TYPE.TEXT]: () => page.waitForSelector(`::-p-text(${node.options.selector})`),
     }
+
+    const getTextArea = selectorMap[node.options.selectorType]
+    if (!getTextArea) throw new Error('Select element failed. Use CSS or XPath')
+
+    const textArea = await getTextArea()
 
     if (!textArea) {
       throw new Error(`Cant find input text area with selector: ${node.options.selector}`)

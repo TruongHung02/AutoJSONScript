@@ -20,6 +20,9 @@ export interface ActionParams {
 
 export interface CustomVariables {
   text?: string
+  account?: string
+  password?: string
+  input?: string
 }
 
 export interface IVar {
@@ -48,6 +51,8 @@ export interface INewTabNode extends INode {
 export interface IActivateTabNode extends INode {
   options: INode['options'] & {
     tabNumber: number
+    selectType: 'string' | 'index'
+    patternUrl: string
   }
 }
 
@@ -71,7 +76,7 @@ export interface IClickNode extends INode {
   options: INode['options'] & {
     buttonType: 'left' | 'right' | 'center'
     selectorBy: 'selector' | 'coordinates'
-    selectorType: 'xpath' | 'css' | 'text' | null
+    selectorType: SelectorType
     selector: string
     x: number
     y: number
@@ -81,7 +86,7 @@ export interface IClickNode extends INode {
 
 export interface ITypeTextNode extends INode {
   options: INode['options'] & {
-    selectorType: 'xpath' | 'css' | 'text' | null
+    selectorType: SelectorType
     selector: string
     x: number
     y: number
@@ -172,7 +177,5 @@ export interface IPasteInputTextNode extends INode {
     selector: string
     x: number
     y: number
-    typeSpeed: number
-    typeAsHuman: boolean
   }
 }

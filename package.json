@@ -18,11 +18,14 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "imap": "^0.8.19",
+    "imap-simple": "^5.1.0",
     "puppeteer": "^24.1.1",
     "puppeteer-core": "^24.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/imap-simple": "^4.2.9",
     "@types/node": "^22.13.1",
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",

@@ -10,16 +10,14 @@ export const config = {
   EXECUTABLE_PATH: '/snap/bin/chromium',
 
   //browser config
-  headless: true, // true / false
-  window_size: '1024,768',
+  headless: false, // true / false
+  window_size: '1280,780',
   //screen shot after each node
-  screenshot: true, // true / false
+  screenshot: false, // true / false
 
   //proxy config
   useProxy: true, // true / false
-  // proxy: 'user:password@host:port',
-  proxy: 'hnskdhkfsk5:HIKnadkf990@103.129.126.199:3160',
 
   //extensions list
-  extensions: [],
+  extensions: ['CaptchaSolver0.2.1_0'],
 }

@@ -1,4 +1,3 @@
-import { ElementHandle } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
 import { ActionParams, IClickNode } from '../../interface'
 import { logger } from '../../helper/logger'
@@ -10,19 +9,27 @@ import { promises as fs } from 'fs'
 export default async function click(actionParams: ActionParams) {
   const { nodeID, nodes, browser, pages, activePage, proxy } = actionParams
   const node = findNode(nodeID, nodes) as IClickNode
+  const page = pages[activePage] // Tối ưu truy cập
   try {
     await delay(Number(node.options.nodeSleep))
+    console.log(page.url())
+    //Test
 
     if (node.options.selectorBy === 'selector') {
-      let clickElement: ElementHandle<Element> | null = null
-
-      if (node.options.selectorType === SELECTOR_TYPE.XPATH) {
-        clickElement = await waitForXpathSelector(pages[activePage], `::-p-xpath(${node.options.selector})`)
-      } else if (node.options.selectorType === SELECTOR_TYPE.CSS) {
-        clickElement = await pages[activePage].waitForSelector(node.options.selector)
-      } else {
-        throw new Error('Click failed. Please select element by CSS selector or Xpath selector')
+      const selectorMap = {
+        [SELECTOR_TYPE.XPATH]: () =>
+          waitForXpathSelector(page, node.options.selector, Number(node.options.nodeTimeout)),
+        [SELECTOR_TYPE.CSS]: () =>
+          page.waitForSelector(node.options.selector, { timeout: Number(node.options.nodeTimeout) * 1000 }),
+        [SELECTOR_TYPE.TEXT]: () =>
+          page.waitForSelector(`::-p-text(${node.options.selector})`, {
+            timeout: Number(node.options.nodeTimeout) * 1000,
+          }),
       }
+
+      const getClickElement = selectorMap[node.options.selectorType]
+      if (!getClickElement) throw new Error('Select element failed. Use CSS or XPath')
+      const clickElement = await getClickElement()
 
       if (clickElement) {
         for (let i = 0; i < node.options.clickCount; i++) {

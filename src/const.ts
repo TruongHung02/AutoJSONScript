@@ -26,11 +26,13 @@ export const ACTION = {
   // COOKIES: "Cookies",
   TYPE_INPUT_TEXT: 'TypeInputText',
   PASTE_WITH_INPUT: 'PasteInputText',
+  PASTE_VERIFY_CODE: 'PasteVerifyCode',
 } as const
 export type ActionType = (typeof ACTION)[keyof typeof ACTION]
 
 export const SELECTOR_TYPE = {
   CSS: 'css',
   XPATH: 'xpath',
+  TEXT: 'text',
 } as const
 export type SelectorType = (typeof SELECTOR_TYPE)[keyof typeof SELECTOR_TYPE]

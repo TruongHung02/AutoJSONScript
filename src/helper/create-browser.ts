@@ -1,6 +1,7 @@
 import puppeteer, { Browser } from 'puppeteer'
 import { config } from '../config'
 import path from 'path'
+import { delay } from '~/until'
 
 export async function createBrowser(proxyString?: string): Promise<Browser> {
   const pathToExtension = config.extensions.map((extension) => path.join(process.cwd(), 'extensions', extension))
@@ -31,6 +32,13 @@ export async function createBrowser(proxyString?: string): Promise<Browser> {
     args: argsLaunchOption,
   })
 
+  await delay(3)
+  const pages = await browser.pages()
+  if (pages.length > 1) {
+    for (let i = 1; i < pages.length; i++) {
+      await pages[i].close()
+    }
+  }
   return browser
 }
 

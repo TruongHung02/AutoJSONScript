@@ -5,7 +5,8 @@ import { delay } from './until'
 import { ActionParams, CustomVariables } from './interface'
 import createBrowsers from './helper/create-browser'
 import loadProxies from './helper/load-proxy'
-import loadWalletKey from './helper/load-wallet-key'
+import loadAccount from './helper/load-account'
+import loadInput from './helper/load-input'
 
 const browsers: Browser[] = [] // Store all browser instances
 
@@ -47,12 +48,18 @@ process.on('SIGINT', closeAllBrowsers)
   await Promise.all(
     browsers.map(async (browser, idx) => {
       //Xử lý điều kiện đọc các mã ví trước khi
-      const walletKeys = await loadWalletKey()
+      const accounts = await loadAccount()
+      const input = await loadInput()
 
-      if (idx < walletKeys.length) {
-        run(browser, 'recoverWalletMining.genlogin.json', proxies[idx], { text: walletKeys[idx] })
+      if (idx < accounts.length) {
+        run(browser, 'testMagicNewton.genlogin.json', proxies[idx], {
+        // run(browser, 'test_activate.genlogin.json', proxies[idx], {
+          account: accounts[idx].split(':')[0],
+          password: accounts[idx].split(':')[1],
+          input: input[idx],
+        })
       } else {
-        run(browser, 'autoCreateWalletAndMiningConet.genlogin.json', proxies[idx])
+        // run(browser, 'autoCreateWalletAndMiningConet.genlogin.json', proxies[idx])
       }
     }),
   )

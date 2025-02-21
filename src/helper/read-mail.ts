@@ -8,7 +8,7 @@ interface EmailDetails {
   body: string
 }
 
-async function readLatestEmail(imapConfig: Imap.ImapSimpleOptions): Promise<EmailDetails | null> {
+export async function readLatestEmail(imapConfig: Imap.ImapSimpleOptions): Promise<EmailDetails | null> {
   try {
     const connection = await Imap.connect(imapConfig)
     await connection.openBox('INBOX')
@@ -42,23 +42,32 @@ async function readLatestEmail(imapConfig: Imap.ImapSimpleOptions): Promise<Emai
   }
 }
 
-// // Ví dụ sử dụng
-// const imapConfig = {
-//   imap: {
-//     user: 'bull3082@tourzy.us',
-//     password: 'Rtn@2024',
-//     host: 'imap.bizflycloud.vn',
-//     port: 993,
-//     tls: true,
-//     authTimeout: 3000,
-//     tlsOptions: { rejectUnauthorized: false }, // Bỏ qua xác thực chứng chỉ
-//   },
-// }
+// Ví dụ sử dụng
+const imapConfig = {
+  imap: {
+    user: 'bull3081@tourzy.us',
+    password: 'Rtn@2024',
+    host: 'imap.bizflycloud.vn',
+    port: 993,
+    tls: true,
+    authTimeout: 3000,
+    tlsOptions: { rejectUnauthorized: false }, // Bỏ qua xác thực chứng chỉ
+  },
+}
 
-// readLatestEmail(imapConfig).then((email) => {
-//   if (email) {
-//     console.log('From:', email.from)
-//     console.log('Subject:', email.subject)
-//     console.log('Body:', email.body)
-//   }
-// })
+readLatestEmail(imapConfig).then((email) => {
+  if (email) {
+    console.log('From:', email.from)
+    console.log('Subject:', email.subject)
+    // console.log('Body:', email.body)
+
+    const emailContent = email.body
+
+    // Code magic-newton
+    const codeIndex = emailContent.indexOf('Login code:')
+    if (!codeIndex) {
+      throw new Error('Cant get login code')
+    }
+    console.log(emailContent.substring(codeIndex + 12, codeIndex + 20).replace(' ', ''))
+  }
+})

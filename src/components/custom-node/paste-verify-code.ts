@@ -20,7 +20,10 @@ export default async function pasteVerifyCode(actionParams: ActionParams) {
       ? 'gmail'
       : customVariables.account.includes('veer')
         ? 'veer'
-        : null
+        : customVariables.account.includes('tourzy')
+          ? 'bizflycloud'
+          : null
+
     if (!mailServer) {
       throw new Error('Mail server is not supported')
     }

@@ -4,15 +4,17 @@ import { createBrowser } from './create-browser'
 import { config } from '~/config'
 import { logger } from './logger'
 import puppeteer from 'puppeteer'
+import { readLatestEmail } from './read-mail'
 
 export default async function getOTP(
   username: string,
   password: string,
-  mailServer: 'gmail' | 'veer' | 'tourzy',
+  mailServer: 'gmail' | 'veer' | 'bizflycloud',
   proxy?: string,
 ) {
   if (mailServer === 'gmail') return getOTPGmail(username, password, proxy)
   else if (mailServer === 'veer') return getOTPVeer(username, password, proxy)
+  else if (mailServer === 'bizflycloud') return getOTPVeer(username, password, proxy)
   return null
 }
 
@@ -174,4 +176,30 @@ async function getOTPVeer(username: string, password: string, proxy?: string) {
   }
 
   return otp
+}
+
+async function getOTPBiz(username: string, password: string) {
+  const imapConfig = {
+    imap: {
+      user: username,
+      password: password,
+      host: 'imap.bizflycloud.vn',
+      port: 993,
+      tls: true,
+      authTimeout: 3000,
+      tlsOptions: { rejectUnauthorized: false }, // Bỏ qua xác thực chứng chỉ
+    },
+  }
+  const latestEmail = await readLatestEmail(imapConfig)
+  if (!latestEmail) {
+    throw new Error('Cant get mail')
+  }
+  const emailContent = latestEmail.body
+
+  // Code magic-newton
+  const codeIndex = emailContent.indexOf('Login code:')
+  if (!codeIndex) {
+    throw new Error('Cant get login code')
+  }
+  return emailContent.substring(codeIndex + 12, codeIndex + 20).replace(' ', '')
 }

@@ -53,7 +53,6 @@ process.on('SIGINT', closeAllBrowsers)
 
       if (idx < accounts.length) {
         run(browser, 'testMagicNewton.genlogin.json', proxies[idx], {
-        // run(browser, 'test_activate.genlogin.json', proxies[idx], {
           account: accounts[idx].split(':')[0],
           password: accounts[idx].split(':')[1],
           input: input[idx],

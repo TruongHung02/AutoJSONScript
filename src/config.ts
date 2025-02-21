@@ -13,7 +13,7 @@ export const config = {
   headless: false, // true / false
   window_size: '1280,780',
   //screen shot after each node
-  screenshot: false, // true / false
+  screenshot: true, // true / false
 
   //proxy config
   useProxy: true, // true / false

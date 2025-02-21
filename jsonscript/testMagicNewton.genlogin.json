@@ -1426,7 +1426,7 @@
             "action": "Click",
             "options": {
               "disabled": false,
-              "nodeSleep": "05",
+              "nodeSleep": "10",
               "nodeTimeout": "30",
               "timeoutNextNode": "successNode",
               "breakpoint": false,
@@ -1458,7 +1458,7 @@
             "action": "Click",
             "options": {
               "disabled": false,
-              "nodeSleep": "05",
+              "nodeSleep": "10",
               "nodeTimeout": "30",
               "timeoutNextNode": "successNode",
               "breakpoint": false,
@@ -1490,7 +1490,7 @@
             "action": "Click",
             "options": {
               "disabled": false,
-              "nodeSleep": "05",
+              "nodeSleep": "10",
               "nodeTimeout": "30",
               "timeoutNextNode": "successNode",
               "breakpoint": false,
@@ -1522,7 +1522,7 @@
             "action": "Click",
             "options": {
               "disabled": false,
-              "nodeSleep": "05",
+              "nodeSleep": "10",
               "nodeTimeout": "30",
               "timeoutNextNode": "successNode",
               "breakpoint": false,
@@ -1554,7 +1554,7 @@
             "action": "Click",
             "options": {
               "disabled": false,
-              "nodeSleep": "05",
+              "nodeSleep": "10",
               "nodeTimeout": "30",
               "timeoutNextNode": "successNode",
               "breakpoint": false,
@@ -1586,7 +1586,7 @@
             "action": "Click",
             "options": {
               "disabled": false,
-              "nodeSleep": "05",
+              "nodeSleep": "10",
               "nodeTimeout": "30",
               "timeoutNextNode": "successNode",
               "breakpoint": false,

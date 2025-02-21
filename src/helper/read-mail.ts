@@ -1,51 +1,64 @@
-import imaps from 'imap-simple'
+import * as Imap from 'imap-simple'
+import { simpleParser } from 'mailparser'
+import * as qp from 'quoted-printable'
 
-async function readEmails(user: string, password: string, host: string, port = 993) {
-  const config = {
-    imap: {
-      user: user,
-      password: password,
-      host: host,
-      port: port,
-      tls: true,
-      tlsOptions: { rejectUnauthorized: false },
-      authTimeout: 10000,
-    },
-  }
+interface EmailDetails {
+  from: string
+  subject: string
+  body: string
+}
 
+async function readLatestEmail(imapConfig: Imap.ImapSimpleOptions): Promise<EmailDetails | null> {
   try {
-    const connection = await imaps.connect(config)
-    await connection.openBox('INBOX') // Mở hộp thư đến
+    const connection = await Imap.connect(imapConfig)
+    await connection.openBox('INBOX')
 
-    // Lấy danh sách ID email theo thứ tự thời gian mới nhất trước
-    const searchCriteria = ['UNSEEN']
-    const fetchOptions = { bodies: ['HEADER', 'TEXT'], markSeen: false }
-
+    const searchCriteria = ['ALL']
+    const fetchOptions = { bodies: ['HEADER.FIELDS (FROM TO SUBJECT DATE)', 'TEXT'], struct: true }
     const messages = await connection.search(searchCriteria, fetchOptions)
 
-    // Sắp xếp tin nhắn theo ngày giảm dần
-    const sortedMessages = messages.sort((a, b) => {
-      const dateA = new Date(a.attributes.date).getTime()
-      const dateB = new Date(b.attributes.date).getTime()
-      return dateB - dateA // Mới nhất trước
-    })
-
-    if (sortedMessages.length > 0) {
-      const latestEmail = sortedMessages[0]
-
-      const header = latestEmail.parts.find((part) => part.which === 'HEADER')?.body
-      const body = latestEmail.parts.find((part) => part.which === 'TEXT')?.body
-
-      console.log('From:', header?.from)
-      console.log('Subject:', header?.subject)
-      console.log('Date:', latestEmail.attributes.date)
-      console.log('Body:', body)
-    } else {
-      console.log('Không có email mới.')
+    if (messages.length === 0) {
+      console.log('Không có email nào trong hộp thư đến.')
+      return null
     }
 
-    connection.end()
+    const latestEmail = messages[messages.length - 1]
+    const header = latestEmail.parts.find((part) => part.which === 'HEADER.FIELDS (FROM TO SUBJECT DATE)')?.body || ''
+    const textPart = latestEmail.parts.find((part) => part.which === 'TEXT')?.body || ''
+
+    const parsedEmail = await simpleParser(textPart)
+    const decodedBody = parsedEmail.text ? qp.decode(parsedEmail.text) : ''
+
+    await connection.end()
+
+    return {
+      from: parsedEmail.from?.text || '',
+      subject: parsedEmail.subject || '',
+      body: decodedBody,
+    }
   } catch (error) {
-    console.error('Lỗi khi đọc email:', error)
+    console.error('Lỗi:', error)
+    return null
   }
 }
+
+// // Ví dụ sử dụng
+// const imapConfig = {
+//   imap: {
+//     user: 'bull3082@tourzy.us',
+//     password: 'Rtn@2024',
+//     host: 'imap.bizflycloud.vn',
+//     port: 993,
+//     tls: true,
+//     authTimeout: 3000,
+//     tlsOptions: { rejectUnauthorized: false }, // Bỏ qua xác thực chứng chỉ
+//   },
+// }
+
+// readLatestEmail(imapConfig).then((email) => {
+//   if (email) {
+//     console.log('From:', email.from)
+//     console.log('Subject:', email.subject)
+//     console.log('Body:', email.body)
+//   }
+// })

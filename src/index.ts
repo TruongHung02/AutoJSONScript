@@ -40,8 +40,8 @@ async function closeAllBrowsers() {
 
 process.on('SIGINT', closeAllBrowsers)
 ;(async () => {
-  const proxies = await loadProxies()
-const createdBrowsers = await createBrowsers(proxies)
+  const proxies = (await loadProxies()).slice(0, 5)
+  const createdBrowsers = await createBrowsers(proxies)
 
   browsers.push(...createdBrowsers) // Keep track of browsers
   await Promise.all(
@@ -52,7 +52,7 @@ const createdBrowsers = await createBrowsers(proxies)
 
       if (idx < input.length) {
         run(browser, 'login_report_gradient.genlogin.json', proxies[idx], {
-        // run(browser, 'testHttp.genlogin.json', proxies[idx], {
+          // run(browser, 'testHttp.genlogin.json', proxies[idx], {
           account: accounts[idx].split(':')[0],
           password: accounts[idx].split(':')[1],
           input: input[idx],

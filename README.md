@@ -37,17 +37,25 @@ nano src/config.ts
 6. Một số cấu hình thêm
 
    1. Proxy
-      `useProxy: true`
-      `proxy: user:password@host:port`
-   2. Extension
-      1. Tạo folder extensions ở root project
-      2. Copy thư mục extension chứa file background.js và manifest.json vào folder extensions vừa tạo
-      3. Thêm tên thư mục extension vào file src/config.js
-         Ví dụ `extensions: ['Toggle', 'Dawn'],`
-   3. Headless mode
-      `headless: true` 
 
-7. Run
+```sh
+   nano proxies.txt
+```
+   `user:pass@host:port`
+
+2.  Extension
+    1. Tạo folder extensions ở root project
+    2. Copy thư mục extension chứa file background.js và manifest.json vào folder extensions vừa tạo
+    3. Thêm tên thư mục extension vào file src/config.js
+       Ví dụ `extensions: ['Toggle', 'Dawn'],`
+3.  Headless mode
+    `headless: true`
+
+4.  Input
+```sh
+   nano input.txt
+```
+   Thứ tự các input, phân biệt bởi dấu cách
 
 ```sh
 npm install

@@ -1,4 +1,3 @@
-import { ElementHandle } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
 import { ActionParams, ITypeInputTextNode } from '../../interface'
 import { logger } from '../../helper/logger'
@@ -9,24 +8,37 @@ import { config } from '~/config'
 export default async function typeInputText(actionParams: ActionParams) {
   const { nodeID, nodes, browser, pages, activePage, proxy, customVariables } = actionParams
   const node = findNode(nodeID, nodes) as ITypeInputTextNode
+  const page = pages[activePage]
   try {
     await delay(Number(node.options.nodeSleep))
-
-    let textArea: ElementHandle<Element> | null = null
-    if (node.options.selectorType === SELECTOR_TYPE.XPATH) {
-      textArea = await waitForXpathSelector(pages[activePage], `::-p-xpath(${node.options.selector})`)
-      // textArea = await pages[activePage].waitForSelector(node.options.selector)
-    } else if (node.options.selectorType === SELECTOR_TYPE.CSS) {
-      textArea = await pages[activePage].waitForSelector(node.options.selector)
-    } else {
-      throw new Error('Select element failed. Select element by CSS Selector or Xpath Selector')
+    const selectorMap = {
+      [SELECTOR_TYPE.XPATH]: () => waitForXpathSelector(page, node.options.selector),
+      [SELECTOR_TYPE.CSS]: () => page.waitForSelector(node.options.selector),
+      [SELECTOR_TYPE.TEXT]: () => page.waitForSelector(`::-p-text(${node.options.selector})`),
     }
 
-    if (!textArea) {
-      throw new Error(`Cant find input text area with selector: ${node.options.selector}`)
-    } else if (customVariables?.text) {
-      await textArea.type(customVariables.text, { delay: 100 })
-      await textArea.dispose()
+    const getTextArea = selectorMap[node.options.selectorType]
+    if (!getTextArea) throw new Error('Select element failed. Use CSS or XPath')
+
+    const textArea = await getTextArea()
+    if (!textArea) throw new Error(`Cant find input text area with selector: ${node.options.selector}`)
+
+    const descriptionIndex = Number(node.options.description)
+
+    if (node.options.description === undefined || isNaN(descriptionIndex) || descriptionIndex < 0) {
+      throw new Error('node option description must be defined as an ordinal number of input, starting from 0')
+    }
+
+    if (customVariables?.input) {
+      const inputParts = customVariables.input.split(' ')
+
+      if (descriptionIndex >= inputParts.length) {
+        throw new Error('node option description index is out of bounds')
+      }
+
+      const input = inputParts[descriptionIndex]
+      await textArea.type(input)
+      console.log(input)
     }
 
     if (config.screenshot) {

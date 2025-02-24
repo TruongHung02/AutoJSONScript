@@ -10,7 +10,7 @@ export const config = {
   EXECUTABLE_PATH: '/snap/bin/chromium',
 
   //browser config
-  headless: false, // true / false
+  headless: true, // true / false
   window_size: '1280,780',
   //screen shot after each node
   screenshot: true, // true / false
@@ -19,5 +19,5 @@ export const config = {
   useProxy: true, // true / false
 
   //extensions list
-  extensions: ['CaptchaSolver0.2.1_0'],
+  extensions: ['Gradient1.0.21_0'],
 }

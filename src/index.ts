@@ -1,7 +1,6 @@
 import { Browser, Page } from 'puppeteer'
 import formatNodes from './helper/format-nodes'
 import nextNode from './components/next-node'
-import { delay } from './until'
 import { ActionParams, CustomVariables } from './interface'
 import createBrowsers from './helper/create-browser'
 import loadProxies from './helper/load-proxy'
@@ -28,8 +27,8 @@ async function run(browser: Browser, script: string, proxy?: string, customVaria
 
   await nextNode(actionParams)
 
-  await delay(10_000)
-  await browser.close()
+  // await delay(10_000_000)
+  // await browser.close()
 }
 
 // Handle Ctrl + C to close all browsers gracefully
@@ -51,8 +50,8 @@ process.on('SIGINT', closeAllBrowsers)
       const accounts = await loadAccount()
       const input = await loadInput()
 
-      if (idx < accounts.length) {
-        run(browser, 'testMagicNewton.genlogin.json', proxies[idx], {
+      if (idx < input.length) {
+        run(browser, 'LOGGIN_GRADIENT.genlogin.json', proxies[idx], {
           account: accounts[idx].split(':')[0],
           password: accounts[idx].split(':')[1],
           input: input[idx],

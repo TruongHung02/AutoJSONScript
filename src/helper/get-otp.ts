@@ -6,15 +6,21 @@ import { logger } from './logger'
 import puppeteer from 'puppeteer'
 import { readLatestEmail } from './read-mail'
 
-export default async function getOTP(
-  username: string,
-  password: string,
-  mailServer: 'gmail' | 'veer' | 'bizflycloud',
-  proxy?: string,
-) {
+export default async function getOTP(username: string, password: string, proxy?: string) {
+  const mailServer = username.includes('gmail')
+    ? 'gmail'
+    : username.includes('veer')
+      ? 'veer'
+      : username.includes('tourzy')
+        ? 'bizflycloud'
+        : null
+
+  if (!mailServer) {
+    throw new Error('Mail server is not supported')
+  }
   if (mailServer === 'gmail') return getOTPGmail(username, password, proxy)
   else if (mailServer === 'veer') return getOTPVeer(username, password, proxy)
-  else if (mailServer === 'bizflycloud') return getOTPVeer(username, password, proxy)
+  else if (mailServer === 'bizflycloud') return getOTPBiz(username, password)
   return null
 }
 

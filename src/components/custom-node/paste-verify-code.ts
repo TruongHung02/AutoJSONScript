@@ -16,35 +16,17 @@ export default async function pasteVerifyCode(actionParams: ActionParams) {
     if (!customVariables?.account || !customVariables?.password) {
       throw new Error('Account info is not provided')
     }
-    const mailServer = customVariables.account.includes('gmail')
-      ? 'gmail'
-      : customVariables.account.includes('veer')
-        ? 'veer'
-        : customVariables.account.includes('tourzy')
-          ? 'bizflycloud'
-          : null
 
-    if (!mailServer) {
-      throw new Error('Mail server is not supported')
-    }
-    const verifyCode = await getOTP(customVariables.account, customVariables.password, mailServer, proxy)
+    const verifyCode = await getOTP(customVariables.account, customVariables.password, proxy)
     console.log(verifyCode)
     if (!verifyCode) {
       throw new Error(`Account ${customVariables.account} cant get verify code`)
     }
 
-    // Xử lý riêng selector iframe cho magic newton, selector nằm trong 1 iframe
-
-    const iframe1 = await waitForXpathSelector(page, '/html/body/iframe')
-    const iFrameContent1 = await iframe1?.contentFrame()
-    if (!iFrameContent1) {
-      throw new Error('Cant find iframe')
-    }
-
     const selectorMap = {
-      [SELECTOR_TYPE.XPATH]: () => waitForXpathSelector(iFrameContent1, `::-p-xpath(${node.options.selector})`),
-      [SELECTOR_TYPE.CSS]: () => iFrameContent1.waitForSelector(node.options.selector),
-      [SELECTOR_TYPE.TEXT]: () => iFrameContent1.waitForSelector(`::-p-xpath(${node.options.selector})`),
+      [SELECTOR_TYPE.XPATH]: () => waitForXpathSelector(page, `::-p-xpath(${node.options.selector})`),
+      [SELECTOR_TYPE.CSS]: () => page.waitForSelector(node.options.selector),
+      [SELECTOR_TYPE.TEXT]: () => page.waitForSelector(`::-p-xpath(${node.options.selector})`),
     }
 
     const getTextArea = selectorMap[node.options.selectorType]

@@ -179,3 +179,27 @@ export interface IPasteInputTextNode extends INode {
     y: number
   }
 }
+
+export interface IGetValueNode extends INode {
+  options: INode['options'] & {
+    selectorType: SelectorType
+    selector: string
+    outputVariable: string
+  }
+}
+
+export interface IHttpRequestNode extends INode {
+  options: INode['options'] & {
+    url: string
+    method: 'GET' | 'POST' | 'PUT'
+    contentType: 'application/json'
+    body: string
+    responseType: JSON
+    headers: Header[]
+  }
+}
+
+export interface Header extends INode {
+  name: string
+  value: string
+}

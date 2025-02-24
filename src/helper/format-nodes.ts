@@ -30,6 +30,11 @@ export default async function formatNodes(script: string): Promise<{
     const formattedVariables = variables.map(({ name, value }) => ({ name, value }))
 
     await fs.promises.writeFile(path.join(scriptPath, 'nodes.json'), JSON.stringify(formattedNodes, null, 2), 'utf8')
+    await fs.promises.writeFile(
+      path.join(scriptPath, 'variables.json'),
+      JSON.stringify(formattedVariables, null, 2),
+      'utf8',
+    )
 
     return { formattedNodes, formattedVariables }
   } catch (error) {

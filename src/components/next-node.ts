@@ -19,6 +19,8 @@ import elementExist from './other/element-exist'
 import typeInputText from './custom-node/type-input-text'
 import pasteWithInput from './custom-node/paste-with-input'
 import pasteVerifyCode from './custom-node/paste-verify-code'
+import getValue from './other/get-value'
+import sendRequest from './other/send-request'
 
 const actionHandlers = {
   [ACTION.NEWTAB]: newTab,
@@ -39,6 +41,8 @@ const actionHandlers = {
   [ACTION.TYPE_INPUT_TEXT]: typeInputText,
   [ACTION.PASTE_WITH_INPUT]: pasteWithInput,
   [ACTION.PASTE_VERIFY_CODE]: pasteVerifyCode,
+  [ACTION.GET_VALUE]: getValue,
+  [ACTION.HTTP]: sendRequest,
 } as const
 
 export default async function nextNode(actionParams: ActionParams) {

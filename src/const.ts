@@ -27,6 +27,8 @@ export const ACTION = {
   TYPE_INPUT_TEXT: 'TypeInputText',
   PASTE_WITH_INPUT: 'PasteInputText',
   PASTE_VERIFY_CODE: 'PasteVerifyCode',
+  GET_VALUE: 'GetValue',
+  HTTP: 'HTTP',
 } as const
 export type ActionType = (typeof ACTION)[keyof typeof ACTION]
 

@@ -14,7 +14,7 @@ export const config = {
   screen_resolution: '1920,1080',
   window_size: '1280,780',
   //screen shot after each node
-  screenshot: true, // true / false
+  screenshot: false, // true / false
 
   //proxy config
   useProxy: true, // true / false

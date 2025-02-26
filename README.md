@@ -55,9 +55,12 @@ nano src/config.ts
 ```sh
    nano input.txt
 ```
-   Thứ tự các input, phân biệt bởi dấu cách
+   `username password`
 
 ```sh
+touch clipboard.txt
+touch accounts.txt
+
 npm install
 npm run dev
 ```

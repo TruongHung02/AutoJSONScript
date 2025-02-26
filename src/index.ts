@@ -28,7 +28,7 @@ async function run(browser: Browser, script: string, proxy?: string, customVaria
   await nextNode(actionParams)
 
   // await delay(10_000_000)
-  // await browser.close()
+  await browser.close()
 }
 
 // Handle Ctrl + C to close all browsers gracefully

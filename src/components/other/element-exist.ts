@@ -34,7 +34,7 @@ export default async function elementExist(actionParams: ActionParams) {
       await pages[activePage].screenshot({ path: 'screenshot.png' })
     }
   } catch (error) {
-    logger.error(error as string)
+    logger.error(`Account: ${actionParams.customVariables?.account} ${error}`)
     if (node?.failNode) {
       actionParams.nodeID = node?.failNode
       await nextNode(actionParams)

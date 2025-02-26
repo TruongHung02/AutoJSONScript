@@ -51,15 +51,17 @@ export default async function nextNode(actionParams: ActionParams) {
     if (!node) throw new Error(`${actionParams.nodeID} Node does not exist`)
     const handler = actionHandlers[node.action]
     if (!handler) {
-      throw new Error(`Action ${node.action} is not defined`)
+      throw new Error(`Account: ${actionParams.customVariables?.account} Action ${node.action} is not defined`)
     }
     if (handler) {
-      logger.info(`Action: ${node.action} Description: ${node.options.description}`)
+      logger.info(
+        `Account: ${actionParams.customVariables?.account} Action: ${node.action} Description: ${node.options.description}`,
+      )
       await handler(actionParams)
     }
   } catch (error) {
     if (error instanceof Error) {
-      logger.error(error.message)
+      logger.error(`Account: ${actionParams.customVariables?.account} ${error.message}`)
     } else {
       logger.error(error as string)
     }

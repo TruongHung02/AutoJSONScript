@@ -30,10 +30,14 @@ export default async function pasteVerifyCode(actionParams: ActionParams) {
     }
 
     const getTextArea = selectorMap[node.options.selectorType]
-    if (!getTextArea) throw new Error('Select element failed. Use CSS or XPath')
+    if (!getTextArea)
+      throw new Error(`Account: ${actionParams.customVariables?.account} Select element failed. Use CSS or XPath`)
 
     const textArea = await getTextArea()
-    if (!textArea) throw new Error(`Cant find input text area with selector: ${node.options.selector}`)
+    if (!textArea)
+      throw new Error(
+        `Account: ${actionParams.customVariables?.account} Cant find input text area with selector: ${node.options.selector}`,
+      )
 
     const context = browser.defaultBrowserContext()
     await context.overridePermissions(page.url(), ['clipboard-read', 'clipboard-write', 'clipboard-sanitized-write'])
@@ -50,7 +54,7 @@ export default async function pasteVerifyCode(actionParams: ActionParams) {
     actionParams.nodeID = node.successNode ?? node.failNode
     if (actionParams.nodeID) await nextNode(actionParams)
   } catch (error) {
-    logger.error(error as string)
+    logger.error(`Account: ${actionParams.customVariables?.account} ${error}`)
     actionParams.nodeID = node.failNode
     if (actionParams.nodeID) await nextNode(actionParams)
   }

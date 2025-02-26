@@ -20,6 +20,7 @@ export default async function newTab(actionParams: ActionParams) {
     })
     await newpage.goto(node?.options.url, {
       waitUntil: 'networkidle2',
+      timeout: 120_000,
     })
 
     try {
@@ -44,7 +45,7 @@ export default async function newTab(actionParams: ActionParams) {
       await nextNode(actionParams)
     }
   } catch (error) {
-    logger.error(error as string)
+    logger.error(`Account: ${actionParams.customVariables?.account} ${error}`)
     if (node?.failNode) {
       actionParams.nodeID = node?.failNode
       await nextNode(actionParams)

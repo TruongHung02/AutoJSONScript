@@ -48,7 +48,7 @@ export default async function ifAction(actionParams: ActionParams) {
       await nextNode(actionParams)
     }
   } catch (error) {
-    logger.error(error as string)
+    logger.error(`Account: ${actionParams.customVariables?.account} ${error}`)
     if (node?.failNode) {
       actionParams.nodeID = node?.failNode
       await nextNode(actionParams)

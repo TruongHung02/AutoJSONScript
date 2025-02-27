@@ -42,7 +42,7 @@ async function closeAllBrowsers() {
 
 process.on('SIGINT', closeAllBrowsers)
 ;(async () => {
-  const proxies = (await loadProxies()).slice(0, config.account_running * 5)
+  const proxies = (await loadProxies()).slice(0, config.account_running * config.proxy_per_account)
   const createdBrowsers = await createBrowsers(proxies)
 
   browsers.push(...createdBrowsers) // Keep track of browsers

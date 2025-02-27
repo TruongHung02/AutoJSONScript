@@ -23,5 +23,6 @@ export const config = {
   extensions: ['Gradient1.0.21_0'],
 
   baseURL: 'https://report.nodeverse.ai/api/docs',
-  account_running: 5, // <=5
+  proxy_per_account: 1,
+  account_running: 1, // <=5
 }

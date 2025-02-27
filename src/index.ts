@@ -6,6 +6,8 @@ import createBrowsers from './helper/create-browser'
 import loadProxies from './helper/load-proxy'
 import loadAccount from './helper/load-account'
 import loadInput from './helper/load-input'
+import { delay } from './until'
+import { config } from './config'
 
 const browsers: Browser[] = [] // Store all browser instances
 
@@ -27,7 +29,7 @@ async function run(browser: Browser, script: string, proxy?: string, customVaria
 
   await nextNode(actionParams)
 
-  // await delay(10_000_000)
+  await delay(30) //Không được xóa
   await browser.close()
 }
 
@@ -40,7 +42,7 @@ async function closeAllBrowsers() {
 
 process.on('SIGINT', closeAllBrowsers)
 ;(async () => {
-  const proxies = (await loadProxies()).slice(0, 5)
+  const proxies = (await loadProxies()).slice(0, config.account_running * 5)
   const createdBrowsers = await createBrowsers(proxies)
 
   browsers.push(...createdBrowsers) // Keep track of browsers
@@ -50,16 +52,12 @@ process.on('SIGINT', closeAllBrowsers)
       const accounts = await loadAccount()
       const input = await loadInput()
 
-      if (idx < input.length) {
-        run(browser, 'login_report_gradient.genlogin.json', proxies[idx], {
-          // run(browser, 'testHttp.genlogin.json', proxies[idx], {
-          account: accounts[idx].split(':')[0],
-          password: accounts[idx].split(':')[1],
-          input: input[idx],
-        })
-      } else {
-        // run(browser, 'autoCreateWalletAndMiningConet.genlogin.json', proxies[idx])
-      }
+      run(browser, 'login_report_gradient.genlogin.json', proxies[idx], {
+        // run(browser, 'testHttp.genlogin.json', proxies[idx], {
+        account: accounts[idx % config.account_running].split(':')[0],
+        password: accounts[idx % config.account_running].split(':')[1],
+        input: input[idx % config.account_running],
+      })
     }),
   )
 })()

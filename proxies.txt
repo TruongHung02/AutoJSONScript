@@ -1,3 +1,8 @@
+hoangkhoi:node@160.191.51.205:33527
+hoangkhoi:node@160.191.51.205:33528
+hoangkhoi:node@160.191.51.205:33508
+hoangkhoi:node@160.191.51.205:33509
+hoangkhoi:node@160.191.51.205:33510
 hoangkhoi:node@160.191.51.205:33520
 hoangkhoi:node@160.191.51.205:33521
 hoangkhoi:node@160.191.51.205:33522
@@ -5,11 +10,6 @@ hoangkhoi:node@160.191.51.205:33523
 hoangkhoi:node@160.191.51.205:33524
 hoangkhoi:node@160.191.51.205:33525
 hoangkhoi:node@160.191.51.205:33526
-hoangkhoi:node@160.191.51.205:33527
-hoangkhoi:node@160.191.51.205:33528
-hoangkhoi:node@160.191.51.205:33508
-hoangkhoi:node@160.191.51.205:33509
-hoangkhoi:node@160.191.51.205:33510
 hoangkhoi:node@160.191.51.205:33511
 hoangkhoi:node@160.191.51.205:33512
 hoangkhoi:node@160.191.51.205:33513

@@ -18,15 +18,15 @@ export default async function loop(actionParams: ActionParams) {
 
       if (operator === '!=' && rightOperand !== leftOperand) {
         actionParams.nodeID = node.startLoopNode
-        nextNode(actionParams)
+        await nextNode(actionParams)
       } else if (operator === '=' && rightOperand === leftOperand) {
         actionParams.nodeID = node.startLoopNode
-        nextNode(actionParams)
+        await nextNode(actionParams)
       } else if (operator !== '!=' && operator !== '=') {
         throw new Error('Chỉ hỗ trợ so sánh != và = ')
       } else {
         actionParams.nodeID = node.failNode
-        nextNode(actionParams)
+        await nextNode(actionParams)
       }
 
       //Xử lý vòng lặp For

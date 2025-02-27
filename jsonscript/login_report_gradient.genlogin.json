@@ -214,7 +214,7 @@
               "clickCount": 1,
               "description": "click close modal"
             },
-            "successNode": "LC6lD",
+            "successNode": "nWZzQ",
             "failNode": null
           },
           "events": {},
@@ -232,7 +232,7 @@
             "action": "Loop",
             "options": {
               "disabled": false,
-              "nodeSleep": "300",
+              "nodeSleep": "5",
               "nodeTimeout": "30",
               "timeoutNextNode": "successNode",
               "loopType": "While",
@@ -249,7 +249,7 @@
             },
             "successNode": null,
             "failNode": null,
-            "startLoopNode": "LC6lD"
+            "startLoopNode": "nWZzQ"
           },
           "events": {},
           "id": "u-IOS",
@@ -284,12 +284,12 @@
               "selector": "/html/body/div[1]/div[1]/div[2]/main/div/div/div[2]/div/div[2]/div[2]/div[1]",
               "outputVariable": "today_reward"
             },
-            "successNode": "nWZzQ",
+            "successNode": "vYMj6",
             "failNode": null
           },
           "events": {},
           "id": "LC6lD",
-          "position": { "x": 1396.4526234006885, "y": 283.9727330049882 },
+          "position": { "x": 1636.9629984553915, "y": 297.2037969202025 },
           "label": "Get value",
           "sourcePosition": "right",
           "targetPosition": "left",
@@ -333,11 +333,11 @@
         {
           "type": "custom",
           "data": {
-            "icon": "actionClick",
-            "action": "Click",
+            "icon": "actionReload",
+            "action": "ReloadPage",
             "options": {
               "disabled": false,
-              "nodeSleep": "0",
+              "nodeSleep": "1",
               "nodeTimeout": "30",
               "timeoutNextNode": "successNode",
               "breakpoint": false,
@@ -350,11 +350,12 @@
               "timeout": "10",
               "clickCount": 1
             },
-            "successNode": "vYMj6",
+            "successNode": "LC6lD",
             "failNode": null
           },
+          "events": {},
           "id": "nWZzQ",
-          "position": { "x": 1622.3046601748147, "y": 302.435194342105 },
+          "position": { "x": 1406.2653584761538, "y": 259.8219375850297 },
           "label": "Click",
           "sourcePosition": "right",
           "targetPosition": "left",
@@ -375,10 +376,10 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-start_Lr5Ik target-MrgJq",
           "id": "vueflow__edge-start_Lr5Ikstart_Lr5Ik__handle-right-MrgJqsuccessNode",
-          "sourceX": 133.19998604910717,
-          "sourceY": 140,
-          "targetX": 394.2856968470982,
-          "targetY": 246
+          "sourceX": 133.20033643633076,
+          "sourceY": 140.00015384344073,
+          "targetX": 394.2856961196648,
+          "targetY": 246.00011196655316
         },
         {
           "sourceHandle": "successNode",
@@ -393,10 +394,10 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-MrgJq target-7-w-5",
           "id": "vueflow__edge-MrgJqsuccessNode-7-w-5successNode",
-          "sourceX": 522.2857491629464,
-          "sourceY": 235.0000261579241,
-          "targetX": 648.472914266263,
-          "targetY": 261.33073976481796
+          "sourceX": 522.28630956602,
+          "sourceY": 235.00006735684372,
+          "targetX": 648.4729136377605,
+          "targetY": 261.33088082870825
         },
         {
           "sourceHandle": "successNode",
@@ -411,10 +412,10 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-7-w-5 target-mWROI",
           "id": "vueflow__edge-7-w-5successNode-mWROIsuccessNode",
-          "sourceX": 776.4728793890308,
-          "sourceY": 250.3307659227421,
-          "targetX": 845.5002920970438,
-          "targetY": 281.55788501740767
+          "sourceX": 776.4734397921045,
+          "sourceY": 250.3308362189988,
+          "targetX": 845.5002914685413,
+          "targetY": 281.5580260812979
         },
         {
           "sourceHandle": "successNode",
@@ -429,10 +430,10 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-mWROI target-K_B5m",
           "id": "vueflow__edge-mWROIsuccessNode-K_B5msuccessNode",
-          "sourceX": 973.5002572198116,
-          "sourceY": 270.55786757879156,
-          "targetX": 1043.2768234556981,
-          "targetY": 307.7782584929868
+          "sourceX": 973.5008176228853,
+          "sourceY": 270.55795237425133,
+          "targetX": 1043.2767064378472,
+          "targetY": 307.77837045954
         },
         {
           "sourceHandle": "successNode",
@@ -447,28 +448,10 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-K_B5m target-eiLE7",
           "id": "vueflow__edge-K_B5msuccessNode-eiLE7successNode",
-          "sourceX": 1171.276788578466,
-          "sourceY": 296.77824105437077,
-          "targetX": 1233.3541446067295,
-          "targetY": 294.95919118191046
-        },
-        {
-          "sourceHandle": "successNode",
-          "targetHandle": "successNode",
-          "type": "custom",
-          "source": "eiLE7",
-          "target": "LC6lD",
-          "updatable": true,
-          "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
-          "events": {},
-          "animated": true,
-          "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
-          "class": "source-eiLE7 target-LC6lD",
-          "id": "vueflow__edge-eiLE7successNode-LC6lDsuccessNode",
-          "sourceX": 1361.3541097294974,
-          "sourceY": 283.9591737432944,
-          "targetX": 1400.4525187689921,
-          "targetY": 313.9727330049882
+          "sourceX": 1171.2772907868655,
+          "sourceY": 296.77832584983054,
+          "targetX": 1233.354143978227,
+          "targetY": 294.9593031484636
         },
         {
           "sourceHandle": "successNode",
@@ -483,69 +466,87 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-vYMj6 target-u-IOS",
           "id": "vueflow__edge-vYMj6successNode-u-IOSsuccessNode",
-          "sourceX": 1962.3644050310602,
-          "sourceY": 320.4566176665467,
-          "targetX": 1774.1836903454011,
-          "targetY": 7.687018719273794
+          "sourceX": 1962.3649654341339,
+          "sourceY": 320.45665886546635,
+          "targetX": 1774.1838657557882,
+          "targetY": 7.687270865158176
         },
         {
           "sourceHandle": "startLoopNode",
           "targetHandle": "successNode",
           "type": "custom",
           "source": "u-IOS",
-          "target": "LC6lD",
+          "target": "nWZzQ",
           "updatable": true,
           "data": { "sourceHandle": "startLoopNode", "targetHandle": "successNode" },
           "events": {},
           "animated": true,
           "style": { "stroke": "#f0a020", "strokeWidth": 2 },
-          "class": "source-u-IOS target-LC6lD",
-          "id": "vueflow__edge-u-IOSstartLoopNode-LC6lDsuccessNode",
-          "sourceX": 1817.383327622187,
-          "sourceY": 67.6870187192738,
-          "targetX": 1400.4525187689921,
-          "targetY": 313.9727330049882
+          "class": "source-u-IOS target-nWZzQ",
+          "id": "vueflow__edge-u-IOSstartLoopNode-nWZzQsuccessNode",
+          "sourceX": 1817.3837810168936,
+          "sourceY": 67.68752301104256,
+          "targetX": 1410.2654276021156,
+          "targetY": 289.82204955158284
         },
         {
           "sourceHandle": "successNode",
           "targetHandle": "successNode",
           "type": "custom",
-          "source": "LC6lD",
+          "source": "eiLE7",
           "target": "nWZzQ",
           "updatable": true,
           "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
           "events": {},
           "animated": true,
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
-          "class": "source-LC6lD target-nWZzQ",
-          "id": "vueflow__edge-LC6lDsuccessNode-nWZzQsuccessNode",
-          "sourceX": 1528.4526582779206,
-          "sourceY": 302.97275916291227,
-          "targetX": 1626.3047293007764,
-          "targetY": 332.43524811398396
+          "class": "source-eiLE7 target-nWZzQ",
+          "id": "vueflow__edge-eiLE7successNode-nWZzQsuccessNode",
+          "sourceX": 1361.354670132571,
+          "sourceY": 283.95925853875417,
+          "targetX": 1410.2654276021156,
+          "targetY": 289.82204955158284
         },
         {
           "sourceHandle": "successNode",
           "targetHandle": "successNode",
           "type": "custom",
           "source": "nWZzQ",
+          "target": "LC6lD",
+          "updatable": true,
+          "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
+          "events": {},
+          "animated": true,
+          "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
+          "class": "source-nWZzQ target-LC6lD",
+          "id": "vueflow__edge-nWZzQsuccessNode-LC6lDsuccessNode",
+          "sourceX": 1538.266070145808,
+          "sourceY": 278.8220049418734,
+          "targetX": 1640.9630675813532,
+          "targetY": 327.20390888675564
+        },
+        {
+          "sourceHandle": "successNode",
+          "targetHandle": "successNode",
+          "type": "custom",
+          "source": "LC6lD",
           "target": "vYMj6",
           "updatable": true,
           "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
           "events": {},
           "animated": true,
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
-          "class": "source-nWZzQ target-vYMj6",
-          "id": "vueflow__edge-nWZzQsuccessNode-vYMj6successNode",
-          "sourceX": 1754.3052554551205,
-          "sourceY": 321.4352616989487,
-          "targetX": 1834.3644399082923,
-          "targetY": 331.45659150862264
+          "class": "source-LC6lD target-vYMj6",
+          "id": "vueflow__edge-LC6lDsuccessNode-vYMj6successNode",
+          "sourceX": 1768.9635937356973,
+          "sourceY": 316.2038642770462,
+          "targetX": 1834.3644392797898,
+          "targetY": 331.4566743778387
         }
       ],
-      "position": [-581.897363238249, -10.798549912374654],
-      "zoom": 1.0488149390231676,
-      "viewport": { "x": -581.897363238249, "y": -10.798549912374654, "zoom": 1.0488149390231676 }
+      "position": [-1979.031223767527, 112.64700424895776],
+      "zoom": 1.5119051745896004,
+      "viewport": { "x": -1979.031223767527, "y": 112.64700424895776, "zoom": 1.5119051745896004 }
     },
     "variables": [
       { "id": "7Xzwn", "name": "today_reward", "label": "", "value": "0", "secret": false },
@@ -560,6 +561,6 @@
   "enableContextMenu": false,
   "enableInput": true,
   "createdAt": "2025-02-24T04:45:10.795Z",
-  "updatedAt": "2025-02-27T10:52:53.854Z",
+  "updatedAt": "2025-02-27T11:26:10.227Z",
   "expiredAt": null
 }

@@ -10,7 +10,7 @@ export default async function reloadPage(actionParams: ActionParams) {
   try {
     await delay(Number(node.options.nodeSleep))
 
-    await pages[activePage].reload()
+    await pages[activePage].reload({ waitUntil: 'networkidle2' })
 
     if (config.screenshot) {
       await pages[activePage].screenshot({ path: 'screenshot.png' })

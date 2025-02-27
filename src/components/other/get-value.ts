@@ -30,7 +30,9 @@ export default async function getValue(actionParams: ActionParams) {
       const changeVarIdx = actionParams.variables.findIndex((variable) => variable.name === node.options.outputVariable)
       if (changeVarIdx !== -1) {
         actionParams.variables[changeVarIdx].value = Number(await page.evaluate((el) => el.textContent, valueElement))
-        console.log(actionParams.variables[changeVarIdx].value)
+        console.log(
+          `Account: ${actionParams.customVariables?.account} Point: ${actionParams.variables[changeVarIdx].value}`,
+        )
       }
     }
 

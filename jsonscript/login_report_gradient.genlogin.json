@@ -107,7 +107,7 @@
           "type": "custom",
           "data": {
             "icon": "actionTypeText",
-            "action": "TypeInputText",
+            "action": "TypeText",
             "options": {
               "disabled": false,
               "nodeSleep": "0",
@@ -119,7 +119,7 @@
               "selectorType": "css",
               "typeSpeed": 1,
               "typeAsHuman": true,
-              "description": "0"
+              "description": "type_input_text 0 account"
             },
             "successNode": "mWROI",
             "failNode": null
@@ -136,7 +136,7 @@
           "type": "custom",
           "data": {
             "icon": "actionTypeText",
-            "action": "TypeInputText",
+            "action": "TypeText",
             "options": {
               "disabled": false,
               "nodeSleep": "0",
@@ -148,7 +148,7 @@
               "selectorType": "css",
               "typeSpeed": 1,
               "typeAsHuman": true,
-              "description": "1"
+              "description": "type_input_text 1 password"
             },
             "successNode": "K_B5m",
             "failNode": null
@@ -211,7 +211,8 @@
               "x": "0",
               "y": "0",
               "timeout": "10",
-              "clickCount": 1
+              "clickCount": 1,
+              "description": "click close modal"
             },
             "successNode": "LC6lD",
             "failNode": null
@@ -220,67 +221,6 @@
           "id": "eiLE7",
           "position": { "x": 1229.3540748522653, "y": 264.95919118191046 },
           "label": "Click",
-          "sourcePosition": "right",
-          "targetPosition": "left",
-          "class": ""
-        },
-        {
-          "type": "custom",
-          "data": {
-            "icon": "actionGetValue",
-            "action": "GetValue",
-            "options": {
-              "disabled": false,
-              "nodeSleep": "0",
-              "nodeTimeout": "30",
-              "timeoutNextNode": "successNode",
-              "breakpoint": false,
-              "selectorType": "xpath",
-              "selector": "/html/body/div[1]/div[1]/div[2]/main/div/div/div[2]/div/div[2]/div[2]/div[1]",
-              "outputVariable": "today_reward"
-            },
-            "successNode": "CKtCp",
-            "failNode": null
-          },
-          "events": {},
-          "id": "vLkQ8",
-          "position": { "x": 1701.8201679098504, "y": 357.360589458259 },
-          "label": "Get value",
-          "sourcePosition": "right",
-          "targetPosition": "left",
-          "class": ""
-        },
-        {
-          "type": "custom",
-          "data": {
-            "icon": "actionHttp",
-            "action": "HTTP",
-            "options": {
-              "disabled": false,
-              "nodeSleep": "0",
-              "nodeTimeout": "30",
-              "timeoutNextNode": "successNode",
-              "breakpoint": false,
-              "url": "https://report.nodeverse.ai/api/report-node/update-point",
-              "method": "POST",
-              "contentType": "application/json",
-              "body": "",
-              "responseType": "JSON",
-              "outputRawVariable": "",
-              "headers": [{ "name": "", "value": "" }],
-              "cookies": [{ "name": "", "value": "" }],
-              "params": [{ "name": "", "value": "" }],
-              "formData": [{ "name": "", "value": "" }],
-              "outputBodyVariables": [{ "outputVariable": "", "path": "" }],
-              "description": "report node gradient"
-            },
-            "successNode": "u-IOS",
-            "failNode": null
-          },
-          "events": {},
-          "id": "CKtCp",
-          "position": { "x": 1929.1630508118626, "y": 357.9454660099762 },
-          "label": "HTTP",
           "sourcePosition": "right",
           "targetPosition": "left",
           "class": ""
@@ -309,11 +249,11 @@
             },
             "successNode": null,
             "failNode": null,
-            "startLoopNode": "vLkQ8"
+            "startLoopNode": "LC6lD"
           },
           "events": {},
           "id": "u-IOS",
-          "position": { "x": 1776.1835857137048, "y": 47.687018719273794 },
+          "position": { "x": 1778.1835857137048, "y": -52.312981280726206 },
           "label": "Loop",
           "sourcePosition": "right",
           "targetPosition": "left",
@@ -344,7 +284,7 @@
               "selector": "/html/body/div[1]/div[1]/div[2]/main/div/div/div[2]/div/div[2]/div[2]/div[1]",
               "outputVariable": "today_reward"
             },
-            "successNode": "vYMj6",
+            "successNode": "nWZzQ",
             "failNode": null
           },
           "events": {},
@@ -384,8 +324,38 @@
           },
           "events": {},
           "id": "vYMj6",
-          "position": { "x": 1545.0240519721171, "y": 278.2584472907023 },
+          "position": { "x": 1830.364370153828, "y": 301.45659150862264 },
           "label": "HTTP",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "class": ""
+        },
+        {
+          "type": "custom",
+          "data": {
+            "icon": "actionClick",
+            "action": "Click",
+            "options": {
+              "disabled": false,
+              "nodeSleep": "0",
+              "nodeTimeout": "30",
+              "timeoutNextNode": "successNode",
+              "breakpoint": false,
+              "buttonType": "left",
+              "selectorBy": "selector",
+              "selectorType": "xpath",
+              "selector": "/html/body/div[1]/div[1]/div[2]/main/div/div/div[2]/div/div[2]/div[2]/div[1]",
+              "x": "0",
+              "y": "0",
+              "timeout": "10",
+              "clickCount": 1
+            },
+            "successNode": "vYMj6",
+            "failNode": null
+          },
+          "id": "nWZzQ",
+          "position": { "x": 1622.3046601748147, "y": 302.435194342105 },
+          "label": "Click",
           "sourcePosition": "right",
           "targetPosition": "left",
           "class": ""
@@ -405,10 +375,10 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-start_Lr5Ik target-MrgJq",
           "id": "vueflow__edge-start_Lr5Ikstart_Lr5Ik__handle-right-MrgJqsuccessNode",
-          "sourceX": 133.20001220703125,
-          "sourceY": 140.00000095367432,
-          "targetX": 394.2857142857143,
-          "targetY": 245.99999237060547
+          "sourceX": 133.19998604910717,
+          "sourceY": 140,
+          "targetX": 394.2856968470982,
+          "targetY": 246
         },
         {
           "sourceHandle": "successNode",
@@ -423,9 +393,9 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-MrgJq target-7-w-5",
           "id": "vueflow__edge-MrgJqsuccessNode-7-w-5successNode",
-          "sourceX": 522.2857448032923,
-          "sourceY": 234.99999237060547,
-          "targetX": 648.4728445117987,
+          "sourceX": 522.2857491629464,
+          "sourceY": 235.0000261579241,
+          "targetX": 648.472914266263,
           "targetY": 261.33073976481796
         },
         {
@@ -441,9 +411,9 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-7-w-5 target-mWROI",
           "id": "vueflow__edge-7-w-5successNode-mWROIsuccessNode",
-          "sourceX": 776.4728597705878,
-          "sourceY": 250.330739764818,
-          "targetX": 845.5002223425795,
+          "sourceX": 776.4728793890308,
+          "sourceY": 250.3307659227421,
+          "targetX": 845.5002920970438,
           "targetY": 281.55788501740767
         },
         {
@@ -459,9 +429,9 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-mWROI target-K_B5m",
           "id": "vueflow__edge-mWROIsuccessNode-K_B5msuccessNode",
-          "sourceX": 973.5002185278822,
-          "sourceY": 270.55788501740767,
-          "targetX": 1043.276753701234,
+          "sourceX": 973.5002572198116,
+          "sourceY": 270.55786757879156,
+          "targetX": 1043.2768234556981,
           "targetY": 307.7782584929868
         },
         {
@@ -477,64 +447,10 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-K_B5m target-eiLE7",
           "id": "vueflow__edge-K_B5msuccessNode-eiLE7successNode",
-          "sourceX": 1171.2767575159312,
-          "sourceY": 296.7782584929868,
-          "targetX": 1233.3540748522653,
+          "sourceX": 1171.276788578466,
+          "sourceY": 296.77824105437077,
+          "targetX": 1233.3541446067295,
           "targetY": 294.95919118191046
-        },
-        {
-          "sourceHandle": "successNode",
-          "targetHandle": "successNode",
-          "type": "custom",
-          "source": "vLkQ8",
-          "target": "CKtCp",
-          "updatable": true,
-          "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
-          "events": {},
-          "animated": true,
-          "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
-          "class": "source-vLkQ8 target-CKtCp",
-          "id": "vueflow__edge-vLkQ8successNode-CKtCpsuccessNode",
-          "sourceX": 1833.8201984274285,
-          "sourceY": 376.360589458259,
-          "targetX": 1933.1630508118626,
-          "targetY": 387.9454660099762
-        },
-        {
-          "sourceHandle": "startLoopNode",
-          "targetHandle": "successNode",
-          "type": "custom",
-          "source": "u-IOS",
-          "target": "vLkQ8",
-          "updatable": true,
-          "data": { "sourceHandle": "startLoopNode", "targetHandle": "successNode" },
-          "events": {},
-          "animated": true,
-          "style": { "stroke": "#f0a020", "strokeWidth": 2 },
-          "class": "source-u-IOS target-vLkQ8",
-          "id": "vueflow__edge-u-IOSstartLoopNode-vLkQ8successNode",
-          "sourceX": 1815.383567403158,
-          "sourceY": 167.68702253397106,
-          "targetX": 1705.8201679098504,
-          "targetY": 387.360589458259
-        },
-        {
-          "sourceHandle": "successNode",
-          "targetHandle": "endLoopNode",
-          "type": "custom",
-          "source": "CKtCp",
-          "target": "u-IOS",
-          "updatable": true,
-          "data": { "sourceHandle": "successNode", "targetHandle": "endLoopNode" },
-          "events": {},
-          "animated": true,
-          "style": { "stroke": "#f0a020", "strokeWidth": 2 },
-          "class": "source-CKtCp target-u-IOS",
-          "id": "vueflow__edge-CKtCpsuccessNode-u-IOSendLoopNode",
-          "sourceX": 2061.1630202942843,
-          "sourceY": 376.9454660099762,
-          "targetX": 1856.9836040242517,
-          "targetY": 167.68702253397106
         },
         {
           "sourceHandle": "successNode",
@@ -549,28 +465,10 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-eiLE7 target-LC6lD",
           "id": "vueflow__edge-eiLE7successNode-LC6lDsuccessNode",
-          "sourceX": 1361.3540595934762,
-          "sourceY": 283.95919118191046,
-          "targetX": 1400.4526931551527,
+          "sourceX": 1361.3541097294974,
+          "sourceY": 283.9591737432944,
+          "targetX": 1400.4525187689921,
           "targetY": 313.9727330049882
-        },
-        {
-          "sourceHandle": "successNode",
-          "targetHandle": "successNode",
-          "type": "custom",
-          "source": "LC6lD",
-          "target": "vYMj6",
-          "updatable": true,
-          "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
-          "events": {},
-          "animated": true,
-          "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
-          "class": "source-LC6lD target-vYMj6",
-          "id": "vueflow__edge-LC6lDsuccessNode-vYMj6successNode",
-          "sourceX": 1528.4526582779206,
-          "sourceY": 302.97271556637213,
-          "targetX": 1549.0241217265814,
-          "targetY": 308.2584472907023
         },
         {
           "sourceHandle": "successNode",
@@ -585,15 +483,69 @@
           "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
           "class": "source-vYMj6 target-u-IOS",
           "id": "vueflow__edge-vYMj6successNode-u-IOSsuccessNode",
-          "sourceX": 1677.0240868493493,
-          "sourceY": 297.25842985208624,
-          "targetX": 1772.1835857137048,
-          "targetY": 107.68702253397106
+          "sourceX": 1962.3644050310602,
+          "sourceY": 320.4566176665467,
+          "targetX": 1774.1836903454011,
+          "targetY": 7.687018719273794
+        },
+        {
+          "sourceHandle": "startLoopNode",
+          "targetHandle": "successNode",
+          "type": "custom",
+          "source": "u-IOS",
+          "target": "LC6lD",
+          "updatable": true,
+          "data": { "sourceHandle": "startLoopNode", "targetHandle": "successNode" },
+          "events": {},
+          "animated": true,
+          "style": { "stroke": "#f0a020", "strokeWidth": 2 },
+          "class": "source-u-IOS target-LC6lD",
+          "id": "vueflow__edge-u-IOSstartLoopNode-LC6lDsuccessNode",
+          "sourceX": 1817.383327622187,
+          "sourceY": 67.6870187192738,
+          "targetX": 1400.4525187689921,
+          "targetY": 313.9727330049882
+        },
+        {
+          "sourceHandle": "successNode",
+          "targetHandle": "successNode",
+          "type": "custom",
+          "source": "LC6lD",
+          "target": "nWZzQ",
+          "updatable": true,
+          "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
+          "events": {},
+          "animated": true,
+          "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
+          "class": "source-LC6lD target-nWZzQ",
+          "id": "vueflow__edge-LC6lDsuccessNode-nWZzQsuccessNode",
+          "sourceX": 1528.4526582779206,
+          "sourceY": 302.97275916291227,
+          "targetX": 1626.3047293007764,
+          "targetY": 332.43524811398396
+        },
+        {
+          "sourceHandle": "successNode",
+          "targetHandle": "successNode",
+          "type": "custom",
+          "source": "nWZzQ",
+          "target": "vYMj6",
+          "updatable": true,
+          "data": { "sourceHandle": "successNode", "targetHandle": "successNode" },
+          "events": {},
+          "animated": true,
+          "style": { "stroke": "#62fcaf", "strokeWidth": 2 },
+          "class": "source-nWZzQ target-vYMj6",
+          "id": "vueflow__edge-nWZzQsuccessNode-vYMj6successNode",
+          "sourceX": 1754.3052554551205,
+          "sourceY": 321.4352616989487,
+          "targetX": 1834.3644399082923,
+          "targetY": 331.45659150862264
         }
       ],
-      "position": [-422.5168363804818, 49.219086896508315],
-      "zoom": 0.7,
-      "viewport": { "x": -422.5168363804818, "y": 49.219086896508315, "zoom": 0.7 }
+      "position": [-581.897363238249, -10.798549912374654],
+      "zoom": 1.0488149390231676,
+      "viewport": { "x": -581.897363238249, "y": -10.798549912374654, "zoom": 1.0488149390231676 }
     },
     "variables": [
       { "id": "7Xzwn", "name": "today_reward", "label": "", "value": "0", "secret": false },
@@ -608,6 +560,6 @@
   "enableContextMenu": false,
   "enableInput": true,
   "createdAt": "2025-02-24T04:45:10.795Z",
-  "updatedAt": "2025-02-24T16:42:24.079Z",
+  "updatedAt": "2025-02-27T10:52:53.854Z",
   "expiredAt": null
 }

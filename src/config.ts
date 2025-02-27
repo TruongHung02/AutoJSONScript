@@ -20,7 +20,7 @@ export const config = {
   useProxy: true, // true / false
 
   //extensions list
-  extensions: ['Gradient1.0.21_0'],
+  extensions: ['Gradient1.0.22_0'],
 
   baseURL: 'https://report.nodeverse.ai/api/docs',
   proxy_per_account: 5,

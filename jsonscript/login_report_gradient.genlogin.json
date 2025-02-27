@@ -107,7 +107,7 @@
           "type": "custom",
           "data": {
             "icon": "actionTypeText",
-            "action": "TypeText",
+            "action": "TypeInputText",
             "options": {
               "disabled": false,
               "nodeSleep": "0",
@@ -119,7 +119,7 @@
               "selectorType": "css",
               "typeSpeed": 1,
               "typeAsHuman": true,
-              "description": "type_input_text 0 account"
+              "description": "0"
             },
             "successNode": "mWROI",
             "failNode": null
@@ -136,7 +136,7 @@
           "type": "custom",
           "data": {
             "icon": "actionTypeText",
-            "action": "TypeText",
+            "action": "TypeInputText",
             "options": {
               "disabled": false,
               "nodeSleep": "0",
@@ -148,7 +148,7 @@
               "selectorType": "css",
               "typeSpeed": 1,
               "typeAsHuman": true,
-              "description": "type_input_text 1 password"
+              "description": "1"
             },
             "successNode": "K_B5m",
             "failNode": null

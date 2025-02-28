@@ -1,7 +1,7 @@
 import nextNode, { findNode } from '../next-node'
 import { ActionParams, IPasteInputTextNode } from '../../interface'
 import { logger } from '../../helper/logger'
-import { delay, waitForXpathSelector } from '~/until'
+import { delay } from '~/until'
 import { config } from '~/config'
 import { SELECTOR_TYPE } from '~/const'
 import getOTP from '~/helper/get-otp'
@@ -23,11 +23,30 @@ export default async function pasteVerifyCode(actionParams: ActionParams) {
       throw new Error(`Account ${customVariables.account} cant get verify code`)
     }
 
-    const selectorMap = {
-      [SELECTOR_TYPE.XPATH]: () => waitForXpathSelector(page, `::-p-xpath(${node.options.selector})`),
-      [SELECTOR_TYPE.CSS]: () => page.waitForSelector(node.options.selector),
-      [SELECTOR_TYPE.TEXT]: () => page.waitForSelector(`::-p-xpath(${node.options.selector})`),
+    //TODO
+    // Xử lý riêng selector iframe cho magic newton, selector nằm trong 1 iframe
+
+    const iframe1 = await page.waitForSelector(`::-p-xpath(/html/body/iframe)`)
+    const iFrameContent1 = await iframe1?.contentFrame()
+    if (!iFrameContent1) {
+      throw new Error('Cant find iframe')
     }
+
+    const selectorMap = {
+      [SELECTOR_TYPE.XPATH]: () =>
+        iFrameContent1.waitForSelector(`::-p-xpath(${node.options.selector})`, { timeout: node.options.nodeTimeout }),
+      [SELECTOR_TYPE.CSS]: () => iFrameContent1.waitForSelector(node.options.selector),
+      [SELECTOR_TYPE.TEXT]: () => iFrameContent1.waitForSelector(`::-p-xpath(${node.options.selector})`),
+    }
+    //************************************************************************ */
+
+    // const selectorMap = {
+    //   [SELECTOR_TYPE.XPATH]: () =>
+    //     page.waitForSelector(`::-p-xpath(${node.options.selector})`, { timeout: node.options.nodeTimeout }),
+    //   [SELECTOR_TYPE.CSS]: () => page.waitForSelector(node.options.selector, { timeout: node.options.nodeTimeout }),
+    //   [SELECTOR_TYPE.TEXT]: () =>
+    //     page.waitForSelector(`::-p-text(${node.options.selector})`, { timeout: node.options.nodeTimeout }),
+    // }
 
     const getTextArea = selectorMap[node.options.selectorType]
     if (!getTextArea)

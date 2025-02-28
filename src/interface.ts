@@ -155,7 +155,7 @@ export interface IIfNode extends INode {
 
 export interface IElementExistNode extends INode {
   options: INode['options'] & {
-    selectorType: 'xpath' | 'css' | 'text' | null
+    selectorType: SelectorType
     selector: string
   }
 }

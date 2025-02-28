@@ -58,7 +58,7 @@ process.on('SIGINT', closeAllBrowsers)
     proxies.map(async (proxy, idx) => {
       //Xử lý điều kiện đọc các mã ví trước khi
 
-      run(idx, 'login_report_gradient.genlogin.json', proxies[idx], {
+      run(idx, 'magic-newton.genlogin.json', proxies[idx], {
         // run(browser, 'testHttp.genlogin.json', proxies[idx], {
         account: accounts[idx % config.account_running].split(':')[0],
         password: accounts[idx % config.account_running].split(':')[1],

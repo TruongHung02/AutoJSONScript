@@ -12,7 +12,7 @@ export const config = {
   //browser config
   headless: false, // true / false
   screen_resolution: '1920,1080',
-  window_size: '450,540',
+  window_size: '1280,768',
   //screen shot after each node
   screenshot: false, // true / false
 
@@ -20,9 +20,9 @@ export const config = {
   useProxy: true, // true / false
 
   //extensions list
-  extensions: ['Gradient1.0.22_0'],
+  extensions: ['CaptchaSolver0.2.1_0'],
 
   baseURL: 'https://report.nodeverse.ai/api/docs',
-  proxy_per_account: 5,
+  proxy_per_account: 1,
   account_running: 5, // <=5
 }

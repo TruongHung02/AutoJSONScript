@@ -12,7 +12,7 @@ export default async function click(actionParams: ActionParams) {
   const page = pages[activePage] // Tối ưu truy cập
   try {
     await delay(Number(node.options.nodeSleep))
-    console.log(page.url())
+    console.log('time out: ' + Number(node.options.nodeTimeout) * 1000)
     //Test
 
     if (node.options.selectorBy === 'selector') {

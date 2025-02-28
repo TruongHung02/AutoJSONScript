@@ -1,26 +1,26 @@
-import { ElementHandle } from 'puppeteer'
 import nextNode, { findNode } from '../next-node'
 import { ActionParams, IElementExistNode } from '../../interface'
 import { logger } from '../../helper/logger'
-import { delay, waitForXpathSelector } from '~/until'
+import { delay } from '~/until'
 import { SELECTOR_TYPE } from '~/const'
 import { config } from '~/config'
 
 export default async function elementExist(actionParams: ActionParams) {
   const { nodeID, nodes, browser, pages, activePage, proxy } = actionParams
   const node = findNode(nodeID, nodes) as IElementExistNode
+  const page = pages[activePage]
   try {
     await delay(Number(node.options.nodeSleep))
 
-    let element: ElementHandle<Element> | null = null
-
-    if (node.options.selectorType === SELECTOR_TYPE.XPATH) {
-      element = await waitForXpathSelector(pages[activePage], `::-p-xpath(${node.options.selector})`)
-    } else if (node.options.selectorType === SELECTOR_TYPE.CSS) {
-      element = await pages[activePage].waitForSelector(node.options.selector)
-    } else {
-      throw new Error(`Element with selector ${node.options.selector} does not exist`)
+    const selectorMap = {
+      [SELECTOR_TYPE.XPATH]: () =>
+        page.waitForSelector(`::-p-xpath(${node.options.selector})`, { timeout: node.options.nodeTimeout }),
+      [SELECTOR_TYPE.CSS]: () => page.waitForSelector(node.options.selector, { timeout: node.options.nodeTimeout }),
+      [SELECTOR_TYPE.TEXT]: () =>
+        page.waitForSelector(`::-p-text(${node.options.selector})`, { timeout: node.options.nodeTimeout }),
     }
+
+    const element = await selectorMap[node.options.selectorType]()
 
     if (element) {
       if (node?.successNode) {

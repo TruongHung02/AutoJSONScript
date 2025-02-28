@@ -23,30 +23,13 @@ export default async function pasteVerifyCode(actionParams: ActionParams) {
       throw new Error(`Account ${customVariables.account} cant get verify code`)
     }
 
-    //TODO
-    // Xử lý riêng selector iframe cho magic newton, selector nằm trong 1 iframe
-
-    const iframe1 = await page.waitForSelector(`::-p-xpath(/html/body/iframe)`)
-    const iFrameContent1 = await iframe1?.contentFrame()
-    if (!iFrameContent1) {
-      throw new Error('Cant find iframe')
-    }
-
     const selectorMap = {
       [SELECTOR_TYPE.XPATH]: () =>
-        iFrameContent1.waitForSelector(`::-p-xpath(${node.options.selector})`, { timeout: node.options.nodeTimeout }),
-      [SELECTOR_TYPE.CSS]: () => iFrameContent1.waitForSelector(node.options.selector),
-      [SELECTOR_TYPE.TEXT]: () => iFrameContent1.waitForSelector(`::-p-xpath(${node.options.selector})`),
+        page.waitForSelector(`::-p-xpath(${node.options.selector})`, { timeout: node.options.nodeTimeout }),
+      [SELECTOR_TYPE.CSS]: () => page.waitForSelector(node.options.selector, { timeout: node.options.nodeTimeout }),
+      [SELECTOR_TYPE.TEXT]: () =>
+        page.waitForSelector(`::-p-text(${node.options.selector})`, { timeout: node.options.nodeTimeout }),
     }
-    //************************************************************************ */
-
-    // const selectorMap = {
-    //   [SELECTOR_TYPE.XPATH]: () =>
-    //     page.waitForSelector(`::-p-xpath(${node.options.selector})`, { timeout: node.options.nodeTimeout }),
-    //   [SELECTOR_TYPE.CSS]: () => page.waitForSelector(node.options.selector, { timeout: node.options.nodeTimeout }),
-    //   [SELECTOR_TYPE.TEXT]: () =>
-    //     page.waitForSelector(`::-p-text(${node.options.selector})`, { timeout: node.options.nodeTimeout }),
-    // }
 
     const getTextArea = selectorMap[node.options.selectorType]
     if (!getTextArea)

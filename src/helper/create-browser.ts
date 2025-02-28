@@ -6,10 +6,23 @@ import { delay } from '~/until'
 export async function createBrowser(idx: number, proxyString?: string): Promise<Browser> {
   const pathToExtension = config.extensions.map((extension) => path.join(process.cwd(), 'extensions', extension))
 
+  const maxCol = Math.floor(Number(config.screen_resolution.split(',')[0]) / Number(config.window_size.split(',')[0]))
+  const maxRow = Math.floor(Number(config.screen_resolution.split(',')[1]) / Number(config.window_size.split(',')[1]))
+  const maxGrid = maxCol * maxRow
+  const position = idx % maxGrid
+  const positionCol = position % maxCol
+  const positionRow = Math.floor(position / maxCol)
+  console.log('positon:' + position)
+  console.log('positonCol:' + positionCol)
+  console.log('positonRow:' + positionRow)
+  const x = positionCol * Number(config.window_size.split(',')[0])
+  const y = positionRow * Number(config.window_size.split(',')[1])
+
   const argsLaunchOption = [
     `--user-agent=${config.USER_AGENT}`,
     '--enable-cookies',
     '--enable-javascript',
+    `--window-position=${x},${y}`,
     `--window-size=${config.window_size}`,
     'accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
     '--no-sandbox',
@@ -17,7 +30,7 @@ export async function createBrowser(idx: number, proxyString?: string): Promise<
     `--disable-extensions-except=${pathToExtension}`,
     `--load-extension=${pathToExtension}`,
     '--enable-features=ClipboardAPI',
-    `--window-position=0,0`,
+    '--disable-infobars',
   ]
 
   if (proxyString) {

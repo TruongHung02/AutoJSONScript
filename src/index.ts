@@ -2,7 +2,7 @@ import { Browser, Page } from 'puppeteer'
 import formatNodes from './helper/format-nodes'
 import nextNode from './components/next-node'
 import { ActionParams, CustomVariables } from './interface'
-import createBrowsers, { createBrowser } from './helper/create-browser'
+import { createBrowser } from './helper/create-browser'
 import loadProxies from './helper/load-proxy'
 import loadAccount from './helper/load-account'
 import loadInput from './helper/load-input'
@@ -10,13 +10,14 @@ import { config } from './config'
 
 const browsers: Browser[] = [] // Store all browser instances
 
-async function run(script: string, proxy?: string, customVariables?: CustomVariables) {
+async function run(idx: number, script: string, proxy?: string, customVariables?: CustomVariables) {
   const { formattedNodes: nodes = [], formattedVariables: variables = [] } = (await formatNodes(script)) || {}
 
   //Reset chạy lại script khi hoàn thành hoặc xảy ra lỗi
   while (true) {
     const pages: Page[] = []
     const browser = await createBrowser(proxy)
+    browsers.push(browser)
 
     const actionParams: ActionParams = {
       nodeID: nodes[0].successNode,
@@ -57,7 +58,7 @@ process.on('SIGINT', closeAllBrowsers)
     proxies.map(async (proxy, idx) => {
       //Xử lý điều kiện đọc các mã ví trước khi
 
-      run('login_report_gradient.genlogin.json', proxies[idx], {
+      run(idx, 'login_report_gradient.genlogin.json', proxies[idx], {
         // run(browser, 'testHttp.genlogin.json', proxies[idx], {
         account: accounts[idx % config.account_running].split(':')[0],
         password: accounts[idx % config.account_running].split(':')[1],

@@ -232,7 +232,7 @@
             "action": "Loop",
             "options": {
               "disabled": false,
-              "nodeSleep": "5",
+              "nodeSleep": "60",
               "nodeTimeout": "30",
               "timeoutNextNode": "successNode",
               "loopType": "While",

@@ -37,6 +37,11 @@ async function run(browser: Browser, script: string, proxy?: string, customVaria
     actionParams.pages = []
     actionParams.activePage = 0
     actionParams.variables = variables
+
+    const opendTab = await browser.pages()
+    for (let i = 1; i < opendTab.length; i++) {
+      await opendTab[i].close()
+    }
   }
 
   await delay(30) //Không được xóa

@@ -3,7 +3,7 @@ import { config } from '../config'
 import path from 'path'
 import { delay } from '~/until'
 
-export async function createBrowser(proxyString?: string): Promise<Browser> {
+export async function createBrowser(idx: number, proxyString?: string): Promise<Browser> {
   const pathToExtension = config.extensions.map((extension) => path.join(process.cwd(), 'extensions', extension))
 
   const argsLaunchOption = [
@@ -46,7 +46,7 @@ export async function createBrowser(proxyString?: string): Promise<Browser> {
 export default async function createBrowsers(proxies: string[]) {
   const createdBrowsers =
     config.useProxy && proxies.length
-      ? await Promise.all(proxies.map((proxy, idx) => createBrowser(proxy)))
-      : [await createBrowser()]
+      ? await Promise.all(proxies.map((proxy, idx) => createBrowser(idx, proxy)))
+      : [await createBrowser(0)]
   return createdBrowsers
 }

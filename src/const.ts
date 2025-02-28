@@ -4,7 +4,7 @@ export const ACTION = {
   OPEN_URL: 'OpenUrl',
   CLOSE_TAB: 'CloseTab',
   GO_BACK: 'GoBack',
-  RELOAD_PAGE: 'ReloadPage',
+  RELOAD_PAGE: 'Reload',
   CLICK: 'Click',
   PRESS_KEY: 'Press',
   TYPE_TEXT: 'TypeText',

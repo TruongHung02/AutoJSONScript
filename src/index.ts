@@ -16,7 +16,7 @@ async function run(idx: number, script: string, proxy?: string, customVariables?
   //Reset chạy lại script khi hoàn thành hoặc xảy ra lỗi
   while (true) {
     const pages: Page[] = []
-    const browser = await createBrowser(proxy)
+    const browser = await createBrowser(idx, proxy)
     browsers.push(browser)
 
     const actionParams: ActionParams = {

@@ -12,9 +12,6 @@ export async function createBrowser(idx: number, proxyString?: string): Promise<
   const position = idx % maxGrid
   const positionCol = position % maxCol
   const positionRow = Math.floor(position / maxCol)
-  console.log('positon:' + position)
-  console.log('positonCol:' + positionCol)
-  console.log('positonRow:' + positionRow)
   const x = positionCol * Number(config.window_size.split(',')[0])
   const y = positionRow * Number(config.window_size.split(',')[1])
 

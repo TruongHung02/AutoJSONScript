@@ -38,7 +38,6 @@ export default async function typeInputText(actionParams: ActionParams) {
 
       const input = inputParts[descriptionIndex]
       await textArea.type(input)
-      console.log(input)
     }
 
     if (config.screenshot) {

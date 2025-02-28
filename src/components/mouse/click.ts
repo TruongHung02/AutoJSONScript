@@ -12,7 +12,6 @@ export default async function click(actionParams: ActionParams) {
   const page = pages[activePage] // Tối ưu truy cập
   try {
     await delay(Number(node.options.nodeSleep))
-    console.log(page.url())
     //Test
 
     if (node.options.selectorBy === 'selector') {
@@ -43,7 +42,6 @@ export default async function click(actionParams: ActionParams) {
             const clipboardText = await pages[activePage].evaluate(async () => {
               return await navigator.clipboard.readText()
             })
-            console.log(clipboardText)
 
             await fs.writeFile(process.cwd() + '/clipboard.txt', clipboardText + '\n', { flag: 'a' })
           }

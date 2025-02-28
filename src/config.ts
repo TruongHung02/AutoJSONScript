@@ -10,7 +10,7 @@ export const config = {
   EXECUTABLE_PATH: '/snap/bin/chromium',
 
   //browser config
-  headless: true, // true / false
+  headless: false, // true / false
   screen_resolution: '1920,1080',
   window_size: '1280,780',
   //screen shot after each node
@@ -23,6 +23,6 @@ export const config = {
   extensions: ['Gradient1.0.22_0'],
 
   baseURL: 'https://report.nodeverse.ai/api/docs',
-  proxy_per_account: 5,
-  account_running: 5, // <=5
+  proxy_per_account: 2,
+  account_running: 2, // <=5
 }

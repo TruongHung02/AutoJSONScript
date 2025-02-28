@@ -27,7 +27,17 @@ async function run(browser: Browser, script: string, proxy?: string, customVaria
     customVariables,
   }
 
-  await nextNode(actionParams)
+  // await nextNode(actionParams)
+
+  //Reset chạy lại script khi hoàn thành hoặc xảy ra lỗi
+  while (true) {
+    await nextNode(actionParams)
+    //reset browser
+    actionParams.nodeID = nodes[0].successNode
+    actionParams.pages = []
+    actionParams.activePage = 0
+    actionParams.variables = variables
+  }
 
   await delay(30) //Không được xóa
   await browser.close()
